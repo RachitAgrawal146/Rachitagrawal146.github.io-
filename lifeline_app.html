@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lifeline — Connecting Brave Souls</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:#FF3B3B;--red-dim:#FF3B3B33;--green:#00FF88;--green-dim:#00FF8820;
+  --amber:#FFB800;--blue:#3B8BFF;
+  --bg:#080C10;--surface:#0E1318;--surface2:#151C24;
+  --border:#1E2830;--text:#E8EDF2;--text-muted:#6B7F8E;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#04060A;color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 20% 20%,#FF3B3B06 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 80% 80%,#00FF8804 0%,transparent 60%);pointer-events:none;z-index:0;}
+.phone{position:relative;width:375px;height:812px;background:#000;border-radius:50px;border:1px solid #2A3540;box-shadow:0 0 0 8px #0A0F14,0 0 0 9px #1E2830,0 60px 120px rgba(0,0,0,0.8),inset 0 0 0 1px #ffffff08;overflow:hidden;z-index:10;}
+.screen{position:absolute;inset:0;overflow:hidden;border-radius:50px;}
+.view{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity 0.35s ease;}
+.view.active{opacity:1;pointer-events:all;}
+.status-bar{display:flex;justify-content:space-between;align-items:center;padding:52px 24px 8px;font-family:'Space Mono',monospace;font-size:11px;color:var(--text-muted);flex-shrink:0;}
+.bottom-nav{position:absolute;bottom:0;left:0;right:0;height:80px;background:rgba(8,12,16,0.96);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;padding:0 8px 16px;z-index:50;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:8px 12px;border-radius:12px;transition:all 0.2s;flex:1;}
+.nav-item:hover{background:var(--surface);}
+.nav-item.active .nav-icon,.nav-item.active .nav-label{color:var(--green);}
+.nav-icon{font-size:20px;color:var(--text-muted);}
+.nav-label{font-size:9px;font-family:'Space Mono',monospace;color:var(--text-muted);letter-spacing:0.5px;}
+.back-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;flex-shrink:0;transition:all 0.2s;}
+.back-btn:hover{border-color:var(--text-muted);}
+.page-header{padding:52px 24px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.page-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;}
+.section-title{font-family:'Space Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes pulse{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ping{0%{transform:scale(1);opacity:0.8}100%{transform:scale(2.8);opacity:0}}
+@keyframes iconPulse{0%,100%{box-shadow:0 0 30px var(--red-dim)}50%{box-shadow:0 0 70px rgba(255,59,59,0.28)}}
+@keyframes ringPulse{0%{transform:scale(0.8);opacity:0.6}100%{transform:scale(2.5);opacity:0}}
+@keyframes sosPulse{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes locPulse{0%,100%{box-shadow:0 0 0 5px rgba(0,255,136,0.18)}50%{box-shadow:0 0 0 9px rgba(0,255,136,0.08)}}
+
+/* SPLASH */
+#splash{background:var(--bg);align-items:center;justify-content:center;gap:16px;}
+.splash-icon{width:88px;height:88px;border-radius:24px;background:linear-gradient(135deg,#1a0000,#0a0000);border:1px solid var(--red);display:flex;align-items:center;justify-content:center;position:relative;animation:iconPulse 2s ease infinite;}
+.splash-icon svg{width:44px;height:44px;}
+.ring{position:absolute;inset:-20px;border:1px solid var(--red);border-radius:50%;opacity:0;animation:ringPulse 2.5s ease-out infinite;}
+.ring:nth-child(2){animation-delay:0.8s}.ring:nth-child(3){animation-delay:1.6s}
+.splash-title{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;letter-spacing:-1px;}
+.splash-sub{font-size:11px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;font-family:'Space Mono',monospace;text-align:center;margin-top:6px;}
+.splash-btn{margin-top:44px;padding:16px 48px;background:var(--red);color:white;border:none;border-radius:30px;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.splash-btn:hover{background:#ff5555;transform:scale(1.03);}
+
+/* HOME */
+#home{background:var(--bg);}
+.home-header{padding:12px 24px 16px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.home-header-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.home-greeting{font-size:12px;color:var(--text-muted);font-family:'Space Mono',monospace;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.home-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;}
+.signal-badge{display:flex;align-items:center;gap:6px;padding:6px 12px;background:var(--green-dim);border:1px solid var(--green);border-radius:20px;font-size:11px;font-family:'Space Mono',monospace;color:var(--green);}
+.signal-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1.5s ease infinite;}
+.map-container{position:relative;height:200px;background:#090E12;overflow:hidden;flex-shrink:0;}
+.map-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:28px 28px;opacity:0.5;}
+.map-label{position:absolute;top:12px;left:16px;font-family:'Space Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;background:rgba(8,12,16,0.85);padding:4px 8px;border-radius:4px;border:1px solid var(--border);}
+.threat-zone{position:absolute;border-radius:50%;background:rgba(255,59,59,0.1);border:1px solid rgba(255,59,59,0.25);animation:pulse 3s ease infinite;}
+.threat-zone.z1{width:90px;height:90px;top:28px;left:35px}
+.threat-zone.z2{width:65px;height:65px;top:80px;left:195px;animation-delay:1s}
+.threat-zone.z3{width:48px;height:48px;top:18px;left:268px;animation-delay:0.5s}
+.route-line{position:absolute;bottom:38px;left:58px;width:200px;height:2px;background:linear-gradient(90deg,transparent,var(--green) 30%,var(--green) 70%,transparent);border-radius:2px;}
+.user-loc{position:absolute;bottom:30px;left:50px;width:20px;height:20px;background:var(--green);border-radius:50%;border:3px solid #000;animation:locPulse 1.5s ease infinite;}
+.user-loc::after{content:'YOU';position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:9px;color:var(--green);white-space:nowrap;background:rgba(0,0,0,0.8);padding:2px 4px;border-radius:3px;}
+.shelter-marker{position:absolute;bottom:24px;right:56px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;}
+.shelter-icon{width:28px;height:28px;background:var(--green);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 0 14px rgba(0,255,136,0.4);}
+.shelter-label{font-family:'Space Mono',monospace;font-size:8px;color:var(--green);letter-spacing:1px;}
+.threat-icon{position:absolute;font-size:15px;animation:blink 2s ease infinite;}
+.threat-icon.t1{top:42px;left:62px}.threat-icon.t2{top:88px;left:220px}
+.home-scroll{flex:1;overflow-y:auto;scrollbar-width:none;padding:14px 16px 90px;display:flex;flex-direction:column;gap:11px;}
+.home-scroll::-webkit-scrollbar{display:none;}
+.threat-card{background:linear-gradient(135deg,rgba(255,59,59,0.08),rgba(255,59,59,0.02));border:1px solid rgba(255,59,59,0.2);border-radius:16px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all 0.2s;}
+.threat-card:hover{border-color:rgba(255,59,59,0.4);}
+.threat-left{display:flex;align-items:center;gap:10px;}
+.threat-level-icon{width:36px;height:36px;background:rgba(255,59,59,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.threat-title{font-size:13px;font-weight:500;}
+.threat-sub{font-size:11px;color:var(--text-muted);margin-top:2px;font-family:'Space Mono',monospace;}
+.threat-badge{padding:5px 11px;background:var(--red);border-radius:20px;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1px;}
+.quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.action-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px 14px;display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:all 0.2s;}
+.action-card:hover{border-color:#3a5060;background:var(--surface2);transform:scale(1.01);}
+.action-card:active{transform:scale(0.97);}
+.action-icon{font-size:22px;}
+.action-title{font-size:13px;font-weight:500;line-height:1.2;}
+.action-sub{font-size:10px;color:var(--text-muted);font-family:'Space Mono',monospace;}
+.sos-btn{background:linear-gradient(135deg,#6B0000,#AA0000);border:1px solid var(--red);border-radius:16px;padding:18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;box-shadow:0 8px 30px rgba(255,59,59,0.15);transition:all 0.2s;}
+.sos-btn:hover{box-shadow:0 8px 40px rgba(255,59,59,0.25);}
+
+/* NAVIGATE */
+#navigate{background:var(--bg);}
+.ai-insight{margin:14px 16px 0;padding:13px 15px;background:linear-gradient(135deg,rgba(0,255,136,0.05),transparent);border:1px solid rgba(0,255,136,0.18);border-radius:16px;display:flex;gap:10px;align-items:flex-start;flex-shrink:0;}
+.ai-text{font-size:12px;color:var(--text-muted);line-height:1.6;}
+.ai-text strong{color:var(--green);font-weight:500;}
+.route-card{margin:12px 16px 0;background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;flex-shrink:0;}
+.route-header{padding:13px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.route-type{display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:11px;color:var(--green);letter-spacing:1px;}
+.route-dot{width:8px;height:8px;border-radius:50%;background:var(--green);}
+.route-eta{font-family:'Space Mono',monospace;font-size:11px;color:var(--text-muted);}
+.route-steps{padding:0 16px 14px;}
+.route-step{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--border);}
+.route-step:last-child{border-bottom:none;}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:11px;color:var(--text-muted);flex-shrink:0;margin-top:2px;}
+.step-num.active{background:var(--green);color:#000;border-color:var(--green);font-weight:700;}
+.step-title{font-size:13px;font-weight:500;margin-bottom:3px;}
+.step-detail{font-size:11px;color:var(--text-muted);font-family:'Space Mono',monospace;}
+.step-warning{font-size:10px;color:var(--red);margin-top:4px;}
+
+/* GOV BROADCAST */
+#gov-broadcast{background:var(--bg);}
+.broadcast-feed{flex:1;overflow-y:auto;scrollbar-width:none;padding:14px 16px 90px;display:flex;flex-direction:column;gap:12px;}
+.broadcast-feed::-webkit-scrollbar{display:none;}
+.broadcast-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;animation:fadeUp 0.4s ease both;}
+.broadcast-header{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.broadcast-source-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.broadcast-source-name{font-size:12px;font-weight:500;}
+.broadcast-source-sub{font-size:10px;color:var(--text-muted);font-family:'Space Mono',monospace;}
+.broadcast-time{margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;color:var(--text-muted);white-space:nowrap;}
+.broadcast-body{padding:12px 14px;}
+.broadcast-title{font-size:13px;font-weight:600;margin-bottom:6px;line-height:1.4;}
+.broadcast-text{font-size:12px;color:var(--text-muted);line-height:1.6;}
+.broadcast-tag{display:inline-block;margin-top:10px;padding:3px 10px;border-radius:20px;font-size:10px;font-family:'Space Mono',monospace;letter-spacing:1px;}
+.tag-urgent{background:rgba(255,59,59,0.15);border:1px solid rgba(255,59,59,0.3);color:var(--red);}
+.tag-safe{background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.25);color:var(--green);}
+.tag-info{background:rgba(59,139,255,0.1);border:1px solid rgba(59,139,255,0.25);color:var(--blue);}
+.tag-med{background:rgba(255,184,0,0.1);border:1px solid rgba(255,184,0,0.25);color:var(--amber);}
+.live-indicator{display:flex;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:10px;color:var(--red);letter-spacing:2px;}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--red);animation:blink 1s ease infinite;}
+
+/* FIND OTHERS */
+#find-others{background:var(--bg);}
+.survivor-map{position:relative;height:255px;background:#060C10;overflow:hidden;flex-shrink:0;}
+.survivor-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(30,40,48,0.7) 1px,transparent 1px),linear-gradient(90deg,rgba(30,40,48,0.7) 1px,transparent 1px);background-size:24px 24px;}
+.survivor-dot{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--blue);border:2px solid #000;box-shadow:0 0 10px rgba(59,139,255,0.5);cursor:pointer;transition:transform 0.2s;}
+.survivor-dot:hover{transform:scale(1.4);}
+.survivor-dot.you{background:var(--green);box-shadow:0 0 12px rgba(0,255,136,0.5);}
+.survivor-dot.danger{background:var(--amber);box-shadow:0 0 10px rgba(255,184,0,0.5);}
+.ping-ring{position:absolute;width:14px;height:14px;border-radius:50%;border:2px solid var(--blue);animation:ping 2.2s ease-out infinite;}
+.ping-ring.green{border-color:var(--green);}
+.map-legend{position:absolute;bottom:10px;left:12px;display:flex;gap:12px;background:rgba(6,12,16,0.9);padding:6px 10px;border-radius:8px;border:1px solid var(--border);}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:9px;font-family:'Space Mono',monospace;color:var(--text-muted);}
+.legend-dot{width:8px;height:8px;border-radius:50%;}
+.survivor-count{position:absolute;top:12px;right:12px;background:rgba(6,12,16,0.9);border:1px solid var(--border);border-radius:10px;padding:6px 12px;font-family:'Space Mono',monospace;font-size:10px;color:var(--text-muted);}
+.survivor-count span{color:var(--blue);font-weight:700;}
+.survivor-list{flex:1;overflow-y:auto;scrollbar-width:none;padding:12px 16px 90px;display:flex;flex-direction:column;gap:10px;}
+.survivor-list::-webkit-scrollbar{display:none;}
+.survivor-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:13px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all 0.2s;}
+.survivor-card:hover{border-color:#2a4060;background:var(--surface2);}
+.survivor-avatar{width:42px;height:42px;border-radius:50%;background:var(--surface2);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.survivor-name{font-size:13px;font-weight:500;}
+.survivor-detail{font-size:11px;color:var(--text-muted);font-family:'Space Mono',monospace;margin-top:3px;}
+.survivor-dist{margin-left:auto;text-align:right;}
+.dist-num{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--blue);}
+.dist-unit{font-size:9px;color:var(--text-muted);font-family:'Space Mono',monospace;}
+.connect-btn{margin-left:8px;padding:6px 13px;background:rgba(59,139,255,0.1);border:1px solid rgba(59,139,255,0.3);border-radius:20px;font-size:11px;color:var(--blue);cursor:pointer;font-family:'Space Mono',monospace;transition:all 0.2s;white-space:nowrap;}
+.connect-btn:hover{background:rgba(59,139,255,0.2);}
+
+/* WELLBEING */
+#wellbeing{background:var(--bg);}
+.wb-header{padding:52px 24px 16px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.wb-title-row{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
+.wb-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;}
+.wb-sub{font-size:12px;color:var(--text-muted);}
+.wb-scroll{flex:1;overflow-y:auto;scrollbar-width:none;padding:14px 16px 90px;display:flex;flex-direction:column;gap:12px;}
+.wb-scroll::-webkit-scrollbar{display:none;}
+.check-in-card{background:linear-gradient(135deg,#0D1A2A,#0a1018);border:1px solid #1A3050;border-radius:20px;padding:18px;}
+.check-in-q{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:14px;line-height:1.4;}
+.mood-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.mood-btn{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;transition:all 0.2s;}
+.mood-btn:hover{border-color:#4a6a8a;}
+.mood-btn.selected{border-color:var(--green);background:rgba(0,255,136,0.05);}
+.mood-emoji{font-size:22px;}
+.mood-label{font-size:9px;color:var(--text-muted);font-family:'Space Mono',monospace;}
+.resource-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all 0.2s;}
+.resource-card:hover{border-color:#3a5060;}
+.resource-left{display:flex;align-items:center;gap:10px;}
+.resource-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.resource-icon.blue{background:rgba(59,130,246,0.15);}
+.resource-icon.purple{background:rgba(139,92,246,0.15);}
+.resource-icon.orange{background:rgba(249,115,22,0.15);}
+.resource-title{font-size:13px;font-weight:500;}
+.resource-sub{font-size:11px;color:var(--text-muted);font-family:'Space Mono',monospace;margin-top:2px;}
+.therapist-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:16px;}
+.therapist-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.therapist-title{font-family:'Space Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;}
+.online-badge{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--green);font-family:'Space Mono',monospace;}
+.online-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 1.5s ease infinite;}
+.therapist-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--border);cursor:pointer;}
+.therapist-avatar{width:40px;height:40px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.therapist-name{font-size:13px;font-weight:500;}
+.therapist-spec{font-size:11px;color:var(--text-muted);font-family:'Space Mono',monospace;margin-top:2px;}
+.book-btn{margin-left:auto;padding:6px 13px;background:var(--surface2);border:1px solid var(--border);border-radius:20px;font-size:11px;color:var(--text);cursor:pointer;font-family:'Space Mono',monospace;transition:all 0.2s;white-space:nowrap;}
+.book-btn:hover{border-color:var(--green);color:var(--green);}
+
+/* SOS */
+#sos-view{background:#080000;align-items:center;justify-content:center;}
+.sos-bg-pulse{position:absolute;border-radius:50%;background:rgba(255,59,59,0.04);animation:sosPulse 2s ease infinite;}
+.sos-bg-pulse:nth-child(1){width:260px;height:260px}
+.sos-bg-pulse:nth-child(2){width:380px;height:380px;animation-delay:0.7s}
+.sos-bg-pulse:nth-child(3){width:500px;height:500px;animation-delay:1.4s}
+.sos-top{position:absolute;top:0;left:0;right:0;padding:52px 24px 0;display:flex;justify-content:space-between;align-items:center;z-index:10;}
+.sos-main-btn{position:relative;z-index:10;width:168px;height:168px;border-radius:50%;background:linear-gradient(135deg,#7B0000,#CC0000);border:3px solid var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 70px rgba(255,59,59,0.35);transition:all 0.2s;margin-bottom:28px;}
+.sos-main-btn:active{transform:scale(0.95);}
+.sos-main-icon{font-size:52px;}
+.sos-main-label{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;letter-spacing:3px;margin-top:4px;}
+.sos-info-cards{position:relative;z-index:10;display:flex;flex-direction:column;gap:9px;width:100%;padding:0 22px;}
+.sos-info{background:rgba(255,59,59,0.07);border:1px solid rgba(255,59,59,0.18);border-radius:13px;padding:11px 15px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-muted);}
+.sos-cancel{position:relative;z-index:10;margin-top:22px;padding:11px 30px;background:transparent;border:1px solid var(--border);border-radius:30px;color:var(--text-muted);font-family:'Space Mono',monospace;font-size:12px;cursor:pointer;transition:all 0.2s;}
+.sos-cancel:hover{border-color:var(--text-muted);color:var(--text);}
+
+.desktop-hint{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:10px;color:rgba(107,127,142,0.4);letter-spacing:1px;z-index:0;text-align:center;pointer-events:none;}
+</style>
+</head>
+<body>
+<div class="phone"><div class="screen">
+
+<!-- SPLASH -->
+<div class="view active" id="splash">
+  <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:16px;">
+    <div class="splash-icon">
+      <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 6C22 6 8 14 8 24C8 31.732 14.268 38 22 38C29.732 38 36 31.732 36 24C36 14 22 6 22 6Z" stroke="#FF3B3B" stroke-width="1.5" fill="rgba(255,59,59,0.08)"/>
+        <polyline points="15,24 20,29 29,19" stroke="#FF3B3B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div><div class="splash-title">Lifeline</div><div class="splash-sub">Connecting Brave Souls</div></div>
+  </div>
+  <button class="splash-btn" onclick="go('home')">Enter →</button>
+  <div style="margin-top:14px;font-size:10px;color:var(--text-muted);font-family:'Space Mono',monospace;text-align:center;letter-spacing:1px;">CONCEPT PROTOTYPE · v0.1</div>
+</div>
+
+<!-- HOME -->
+<div class="view" id="home">
+  <div class="status-bar"><span>09:41</span><span>▲ SAT · ⬡ AI</span><span>●●●</span></div>
+  <div class="home-header">
+    <div class="home-header-top">
+      <div><div class="home-greeting">Good morning</div><div class="home-name">Rachit ·</div></div>
+      <div class="signal-badge"><div class="signal-dot"></div>CONNECTED</div>
+    </div>
+  </div>
+  <div class="map-container">
+    <div class="map-grid"></div>
+    <div class="map-label">LIVE THREAT MAP · AI UPDATED</div>
+    <div class="threat-zone z1"></div><div class="threat-zone z2"></div><div class="threat-zone z3"></div>
+    <div class="route-line"></div>
+    <div class="user-loc"></div>
+    <div class="shelter-marker"><div class="shelter-icon">🏠</div><div class="shelter-label">SHELTER</div></div>
+    <div class="threat-icon t1">⚠️</div><div class="threat-icon t2">⚠️</div>
+  </div>
+  <div class="home-scroll">
+    <div class="threat-card" onclick="go('navigate')">
+      <div class="threat-left">
+        <div class="threat-level-icon">🔴</div>
+        <div><div class="threat-title">Threat Level: HIGH</div><div class="threat-sub">2 ACTIVE ZONES NEARBY</div></div>
+      </div>
+      <div class="threat-badge">NAVIGATE →</div>
+    </div>
+    <div class="section-title">Quick Actions</div>
+    <div class="quick-actions">
+      <div class="action-card" onclick="go('navigate')"><div class="action-icon">🗺️</div><div class="action-title">Safe Route</div><div class="action-sub">AI GUIDED</div></div>
+      <div class="action-card" onclick="go('wellbeing')"><div class="action-icon">🧠</div><div class="action-title">Wellbeing Check</div><div class="action-sub">MENTAL SUPPORT</div></div>
+      <div class="action-card" onclick="go('gov-broadcast')"><div class="action-icon">📡</div><div class="action-title">Gov. Broadcast</div><div class="action-sub">3 NEW ALERTS</div></div>
+      <div class="action-card" onclick="go('find-others')"><div class="action-icon">👥</div><div class="action-title">Find Others</div><div class="action-sub">NEARBY CIVILIANS</div></div>
+    </div>
+    <div class="sos-btn" onclick="go('sos-view')">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span style="font-size:28px;">🆘</span>
+        <div><div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;">Emergency SOS</div><div style="font-size:11px;color:rgba(255,255,255,0.55);">Broadcast location to all responders</div></div>
+      </div>
+      <span style="font-size:20px;opacity:0.7;">›</span>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item active" onclick="go('home')"><div class="nav-icon">🏠</div><div class="nav-label">HOME</div></div>
+    <div class="nav-item" onclick="go('navigate')"><div class="nav-icon">🗺️</div><div class="nav-label">NAVIGATE</div></div>
+    <div class="nav-item" onclick="go('wellbeing')"><div class="nav-icon">🧠</div><div class="nav-label">WELLBEING</div></div>
+    <div class="nav-item" onclick="go('sos-view')"><div class="nav-icon">🆘</div><div class="nav-label">SOS</div></div>
+  </div>
+</div>
+
+<!-- NAVIGATE -->
+<div class="view" id="navigate">
+  <div class="status-bar"><span>09:41</span><span>▲ SAT · ⬡ AI</span><span>●●●</span></div>
+  <div class="page-header"><div class="back-btn" onclick="go('home')">←</div><div class="page-title">Safe Route</div></div>
+  <div style="flex:1;overflow-y:auto;scrollbar-width:none;padding-bottom:90px;">
+    <div style="margin:14px 16px 0;">
+      <div style="background:#060C10;border:1px solid var(--border);border-radius:16px;overflow:hidden;height:130px;position:relative;">
+        <svg width="100%" height="100%" viewBox="0 0 343 130" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="g" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M 28 0 L 0 0 0 28" fill="none" stroke="#1E2830" stroke-width="0.8"/></pattern>
+            <marker id="arr" markerWidth="6" markerHeight="4" refX="6" refY="2" orient="auto"><polygon points="0 0,6 2,0 4" fill="#00FF88"/></marker>
+          </defs>
+          <rect width="343" height="130" fill="url(#g)"/>
+          <circle cx="80" cy="45" r="38" fill="rgba(255,59,59,0.08)" stroke="rgba(255,59,59,0.25)" stroke-width="1"><animate attributeName="r" values="35;40;35" dur="3s" repeatCount="indefinite"/></circle>
+          <circle cx="240" cy="70" r="30" fill="rgba(255,59,59,0.08)" stroke="rgba(255,59,59,0.25)" stroke-width="1"><animate attributeName="r" values="28;33;28" dur="3.5s" repeatCount="indefinite"/></circle>
+          <path d="M 40 100 Q 40 60 120 55 Q 175 52 175 75 Q 175 95 260 90 Q 300 88 310 75" fill="none" stroke="#00FF88" stroke-width="2.5" stroke-dasharray="8 4" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" values="100;0" dur="2s" repeatCount="indefinite"/></path>
+          <circle cx="40" cy="100" r="7" fill="#00FF88" stroke="#000" stroke-width="2"/>
+          <circle cx="40" cy="100" r="13" fill="none" stroke="#00FF88" stroke-width="1" opacity="0.3"><animate attributeName="r" values="9;16;9" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/></circle>
+          <rect x="298" y="62" width="22" height="22" rx="4" fill="#00FF88"/>
+          <text x="309" y="77" text-anchor="middle" font-size="12">🏠</text>
+          <text x="80" y="48" text-anchor="middle" font-size="16">⚠️</text>
+          <text x="240" y="73" text-anchor="middle" font-size="14">⚠️</text>
+          <text x="48" y="115" font-size="8" fill="#00FF88" font-family="monospace">YOU</text>
+          <text x="290" y="92" font-size="8" fill="#00FF88" font-family="monospace">SHELTER</text>
+        </svg>
+      </div>
+    </div>
+    <div class="ai-insight" style="margin-top:12px;">
+      <div style="font-size:18px;flex-shrink:0;margin-top:1px;">🤖</div>
+      <div class="ai-text"><strong>AI analysis:</strong> Satellite data updated 4 min ago. Route avoids 2 confirmed threat zones. Crowd density: low. Northern corridor — <strong>confidence 87%</strong>.</div>
+    </div>
+    <div class="route-card" style="margin-top:12px;">
+      <div class="route-header"><div class="route-type"><div class="route-dot"></div>OPTIMAL SAFE ROUTE</div><div class="route-eta">ETA: ~22 MIN</div></div>
+      <div class="route-steps">
+        <div class="route-step"><div class="step-num active">→</div><div><div class="step-title">Head North on Basra St.</div><div class="step-detail">400M · CLEAR</div></div></div>
+        <div class="route-step"><div class="step-num">2</div><div><div class="step-title">Turn left at Al-Rashid junction</div><div class="step-detail">250M · MONITORED</div><div class="step-warning">⚠ Stay low — line of sight to Zone B</div></div></div>
+        <div class="route-step"><div class="step-num">3</div><div><div class="step-title">Enter underground passage</div><div class="step-detail">120M · RECOMMENDED</div></div></div>
+        <div class="route-step"><div class="step-num">🏠</div><div><div class="step-title">Shelter Alpha-7 · Capacity: 240</div><div class="step-detail">VERIFIED SAFE · MEDICS ON SITE</div></div></div>
+      </div>
+    </div>
+    <div style="padding:0 16px;display:flex;gap:10px;margin-top:12px;">
+      <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center;cursor:pointer;"><div style="font-size:20px;margin-bottom:4px;">🔄</div><div style="font-size:10px;font-family:'Space Mono',monospace;color:var(--text-muted);">ALT ROUTE</div></div>
+      <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center;cursor:pointer;"><div style="font-size:20px;margin-bottom:4px;">📍</div><div style="font-size:10px;font-family:'Space Mono',monospace;color:var(--text-muted);">SHARE LOC</div></div>
+      <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center;cursor:pointer;"><div style="font-size:20px;margin-bottom:4px;">⬇️</div><div style="font-size:10px;font-family:'Space Mono',monospace;color:var(--text-muted);">OFFLINE</div></div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item" onclick="go('home')"><div class="nav-icon">🏠</div><div class="nav-label">HOME</div></div>
+    <div class="nav-item active"><div class="nav-icon">🗺️</div><div class="nav-label">NAVIGATE</div></div>
+    <div class="nav-item" onclick="go('wellbeing')"><div class="nav-icon">🧠</div><div class="nav-label">WELLBEING</div></div>
+    <div class="nav-item" onclick="go('sos-view')"><div class="nav-icon">🆘</div><div class="nav-label">SOS</div></div>
+  </div>
+</div>
+
+<!-- GOV BROADCAST -->
+<div class="view" id="gov-broadcast">
+  <div class="status-bar"><span>09:41</span><span>▲ SAT · ⬡ AI</span><span>●●●</span></div>
+  <div class="page-header">
+    <div class="back-btn" onclick="go('home')">←</div>
+    <div class="page-title">Gov. Broadcast</div>
+    <div class="live-indicator" style="margin-left:auto;"><div class="live-dot"></div>LIVE</div>
+  </div>
+  <div class="broadcast-feed">
+    <div class="broadcast-card" style="animation-delay:0s">
+      <div class="broadcast-header"><div class="broadcast-source-icon" style="background:rgba(255,59,59,0.15);">🚨</div><div><div class="broadcast-source-name">Ministry of Defence</div><div class="broadcast-source-sub">VERIFIED · OFFICIAL</div></div><div class="broadcast-time">9:38 AM</div></div>
+      <div class="broadcast-body"><div class="broadcast-title">IMMEDIATE EVACUATION — Sector 4 & 5</div><div class="broadcast-text">All civilians in Sector 4 and 5 must evacuate immediately via northern corridors only. Southern routes are compromised. Lifeline navigation has been updated with safe paths. Military escort available at checkpoint Bravo-3.</div><div class="broadcast-tag tag-urgent">URGENT</div></div>
+    </div>
+    <div class="broadcast-card" style="animation-delay:0.1s">
+      <div class="broadcast-header"><div class="broadcast-source-icon" style="background:rgba(0,255,136,0.1);">🏥</div><div><div class="broadcast-source-name">ICRC Field Office</div><div class="broadcast-source-sub">RED CROSS · VERIFIED</div></div><div class="broadcast-time">9:21 AM</div></div>
+      <div class="broadcast-body"><div class="broadcast-title">Medical Station Open — Al Zahra School</div><div class="broadcast-text">A field medical station is now operational at Al Zahra School, Sector 7. Doctors and nurses are on site. All civilians welcome regardless of injury severity. Blood supply critically needed — type O+ donors prioritised.</div><div class="broadcast-tag tag-med">MEDICAL</div></div>
+    </div>
+    <div class="broadcast-card" style="animation-delay:0.2s">
+      <div class="broadcast-header"><div class="broadcast-source-icon" style="background:rgba(59,139,255,0.12);">🌍</div><div><div class="broadcast-source-name">UN Refugee Agency</div><div class="broadcast-source-sub">UNHCR · VERIFIED</div></div><div class="broadcast-time">8:55 AM</div></div>
+      <div class="broadcast-body"><div class="broadcast-title">Shelter Alpha-7 Now Accepting Civilians</div><div class="broadcast-text">Shelter Alpha-7 has reopened with capacity for 240 people. Food, water, and medical supplies available. Children and elderly will be prioritised. Bring any ID documentation if available.</div><div class="broadcast-tag tag-safe">SAFE ZONE</div></div>
+    </div>
+    <div class="broadcast-card" style="animation-delay:0.3s">
+      <div class="broadcast-header"><div class="broadcast-source-icon" style="background:rgba(255,184,0,0.1);">📻</div><div><div class="broadcast-source-name">Civil Defense Authority</div><div class="broadcast-source-sub">GOVERNMENT · VERIFIED</div></div><div class="broadcast-time">8:30 AM</div></div>
+      <div class="broadcast-body"><div class="broadcast-title">Water Supply Restored — Northern Districts</div><div class="broadcast-text">Water supply partially restored to northern districts. Civilians advised to boil water as precaution. Distribution trucks will operate at central squares from 10 AM to 2 PM daily.</div><div class="broadcast-tag tag-info">INFORMATION</div></div>
+    </div>
+    <div class="broadcast-card" style="animation-delay:0.4s">
+      <div class="broadcast-header"><div class="broadcast-source-icon" style="background:rgba(0,255,136,0.1);">✈️</div><div><div class="broadcast-source-name">Evacuation Command</div><div class="broadcast-source-sub">JOINT OPERATIONS</div></div><div class="broadcast-time">7:45 AM</div></div>
+      <div class="broadcast-body"><div class="broadcast-title">Civilian Airlift — Registration Open</div><div class="broadcast-text">International airlift program has begun. Civilians with children under 12 and elderly over 65 may register via this app. Departures from Northern Airfield at 6 AM daily. 48-hour advance registration required.</div><div class="broadcast-tag tag-safe">EVACUATION</div></div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item" onclick="go('home')"><div class="nav-icon">🏠</div><div class="nav-label">HOME</div></div>
+    <div class="nav-item" onclick="go('navigate')"><div class="nav-icon">🗺️</div><div class="nav-label">NAVIGATE</div></div>
+    <div class="nav-item" onclick="go('wellbeing')"><div class="nav-icon">🧠</div><div class="nav-label">WELLBEING</div></div>
+    <div class="nav-item" onclick="go('sos-view')"><div class="nav-icon">🆘</div><div class="nav-label">SOS</div></div>
+  </div>
+</div>
+
+<!-- FIND OTHERS -->
+<div class="view" id="find-others">
+  <div class="status-bar"><span>09:41</span><span>▲ SAT · ⬡ AI</span><span>●●●</span></div>
+  <div class="page-header"><div class="back-btn" onclick="go('home')">←</div><div class="page-title">Find Others</div></div>
+  <div class="survivor-map">
+    <div class="survivor-grid"></div>
+    <div class="survivor-count">Nearby: <span>14</span> civilians</div>
+    <div class="survivor-dot you" style="left:100px;top:145px;"></div>
+    <div class="ping-ring green" style="left:100px;top:145px;"></div>
+    <div class="survivor-dot" style="left:158px;top:112px;"></div>
+    <div class="ping-ring" style="left:158px;top:112px;animation-delay:0.4s"></div>
+    <div class="survivor-dot" style="left:68px;top:85px;"></div>
+    <div class="survivor-dot" style="left:205px;top:158px;"></div>
+    <div class="ping-ring" style="left:205px;top:158px;animation-delay:0.8s"></div>
+    <div class="survivor-dot danger" style="left:272px;top:65px;"></div>
+    <div class="survivor-dot" style="left:44px;top:178px;"></div>
+    <div class="survivor-dot" style="left:235px;top:198px;"></div>
+    <div class="survivor-dot" style="left:305px;top:148px;"></div>
+    <div class="survivor-dot danger" style="left:315px;top:95px;"></div>
+    <div class="survivor-dot" style="left:132px;top:52px;"></div>
+    <div style="position:absolute;width:70px;height:70px;border-radius:50%;background:rgba(255,59,59,0.08);border:1px solid rgba(255,59,59,0.2);top:38px;left:248px;animation:pulse 3s ease infinite;"></div>
+    <div class="map-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green);"></div>YOU</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--blue);"></div>CIVILIAN</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--amber);"></div>NEEDS HELP</div>
+    </div>
+  </div>
+  <div class="survivor-list">
+    <div class="section-title">Nearby Survivors</div>
+    <div class="survivor-card"><div class="survivor-avatar">👩</div><div><div class="survivor-name">Fatima A. <span style="font-size:10px;color:var(--amber);">⚠ Needs help</span></div><div class="survivor-detail">FAMILY OF 4 · INJURED</div></div><div class="survivor-dist"><div class="dist-num">0.3</div><div class="dist-unit">KM AWAY</div></div><div class="connect-btn">Signal →</div></div>
+    <div class="survivor-card"><div class="survivor-avatar">👨</div><div><div class="survivor-name">Omar K.</div><div class="survivor-detail">ALONE · MOVING</div></div><div class="survivor-dist"><div class="dist-num">0.5</div><div class="dist-unit">KM AWAY</div></div><div class="connect-btn">Signal →</div></div>
+    <div class="survivor-card"><div class="survivor-avatar">👴</div><div><div class="survivor-name">Hassan M. <span style="font-size:10px;color:var(--amber);">⚠ Needs help</span></div><div class="survivor-detail">ELDERLY · SHELTER NEEDED</div></div><div class="survivor-dist"><div class="dist-num">0.7</div><div class="dist-unit">KM AWAY</div></div><div class="connect-btn">Signal →</div></div>
+    <div class="survivor-card"><div class="survivor-avatar">👧</div><div><div class="survivor-name">Leila & Group</div><div class="survivor-detail">GROUP OF 6 · SHELTERED</div></div><div class="survivor-dist"><div class="dist-num">1.1</div><div class="dist-unit">KM AWAY</div></div><div class="connect-btn">Signal →</div></div>
+    <div class="survivor-card"><div class="survivor-avatar">👩‍⚕️</div><div><div class="survivor-name">Dr. Nour S.</div><div class="survivor-detail">MEDIC · CAN ASSIST</div></div><div class="survivor-dist"><div class="dist-num">1.4</div><div class="dist-unit">KM AWAY</div></div><div class="connect-btn">Signal →</div></div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item" onclick="go('home')"><div class="nav-icon">🏠</div><div class="nav-label">HOME</div></div>
+    <div class="nav-item" onclick="go('navigate')"><div class="nav-icon">🗺️</div><div class="nav-label">NAVIGATE</div></div>
+    <div class="nav-item" onclick="go('wellbeing')"><div class="nav-icon">🧠</div><div class="nav-label">WELLBEING</div></div>
+    <div class="nav-item" onclick="go('sos-view')"><div class="nav-icon">🆘</div><div class="nav-label">SOS</div></div>
+  </div>
+</div>
+
+<!-- WELLBEING -->
+<div class="view" id="wellbeing">
+  <div class="status-bar"><span>09:41</span><span>▲ SAT · ⬡ AI</span><span>●●●</span></div>
+  <div class="wb-header">
+    <div class="wb-title-row"><div class="back-btn" onclick="go('home')">←</div><div style="font-size:22px;">🧠</div><div class="wb-title">Wellbeing</div></div>
+    <div class="wb-sub">You are not alone. We're here with you.</div>
+  </div>
+  <div class="wb-scroll">
+    <div class="check-in-card">
+      <div class="check-in-q">How are you feeling right now?</div>
+      <div class="mood-grid">
+        <div class="mood-btn" onclick="selectMood(this)"><div class="mood-emoji">😰</div><div class="mood-label">SCARED</div></div>
+        <div class="mood-btn" onclick="selectMood(this)"><div class="mood-emoji">😞</div><div class="mood-label">LOW</div></div>
+        <div class="mood-btn" onclick="selectMood(this)"><div class="mood-emoji">😐</div><div class="mood-label">OKAY</div></div>
+        <div class="mood-btn" onclick="selectMood(this)"><div class="mood-emoji">💪</div><div class="mood-label">STRONG</div></div>
+      </div>
+    </div>
+    <div class="section-title">Support Resources</div>
+    <div class="resource-card"><div class="resource-left"><div class="resource-icon blue">🧘</div><div><div class="resource-title">Breathing Exercise</div><div class="resource-sub">3 MIN · CALMING</div></div></div><span style="color:var(--text-muted);">›</span></div>
+    <div class="resource-card"><div class="resource-left"><div class="resource-icon purple">🎙️</div><div><div class="resource-title">AI Companion Chat</div><div class="resource-sub">24/7 · ALWAYS AVAILABLE</div></div></div><span style="color:var(--text-muted);">›</span></div>
+    <div class="resource-card"><div class="resource-left"><div class="resource-icon orange">📖</div><div><div class="resource-title">Grounding Techniques</div><div class="resource-sub">CRISIS MANAGEMENT</div></div></div><span style="color:var(--text-muted);">›</span></div>
+    <div class="therapist-card">
+      <div class="therapist-header"><div class="therapist-title">Live Therapists</div><div class="online-badge"><div class="online-dot"></div>3 ONLINE</div></div>
+      <div class="therapist-row"><div class="therapist-avatar">👩‍⚕️</div><div><div class="therapist-name">Dr. Amina Khalil</div><div class="therapist-spec">TRAUMA · AR/EN</div></div><div class="book-btn">Book →</div></div>
+      <div class="therapist-row"><div class="therapist-avatar">🧑‍⚕️</div><div><div class="therapist-name">Dr. Priya Nair</div><div class="therapist-spec">CRISIS · EN/HI</div></div><div class="book-btn">Book →</div></div>
+      <div class="therapist-row"><div class="therapist-avatar">👨‍⚕️</div><div><div class="therapist-name">Dr. Yusuf Al-Amin</div><div class="therapist-spec">PTSD · AR/FR</div></div><div class="book-btn">Book →</div></div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="nav-item" onclick="go('home')"><div class="nav-icon">🏠</div><div class="nav-label">HOME</div></div>
+    <div class="nav-item" onclick="go('navigate')"><div class="nav-icon">🗺️</div><div class="nav-label">NAVIGATE</div></div>
+    <div class="nav-item active"><div class="nav-icon">🧠</div><div class="nav-label">WELLBEING</div></div>
+    <div class="nav-item" onclick="go('sos-view')"><div class="nav-icon">🆘</div><div class="nav-label">SOS</div></div>
+  </div>
+</div>
+
+<!-- SOS -->
+<div class="view" id="sos-view" style="display:flex;">
+  <div class="sos-bg-pulse"></div><div class="sos-bg-pulse"></div><div class="sos-bg-pulse"></div>
+  <div class="sos-top">
+    <div class="back-btn" onclick="go('home')" style="background:rgba(255,59,59,0.1);border-color:rgba(255,59,59,0.3);">←</div>
+    <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px;">EMERGENCY</div>
+    <div style="width:36px;"></div>
+  </div>
+  <div class="sos-main-btn"><div class="sos-main-icon">🆘</div><div class="sos-main-label">SOS</div></div>
+  <div class="sos-info-cards">
+    <div class="sos-info"><span style="font-size:16px;">📡</span><span>Your GPS location will be broadcast to all nearby responders and government partners.</span></div>
+    <div class="sos-info"><span style="font-size:16px;">🛰️</span><span>Satellite backup active — works even without mobile network.</span></div>
+    <div class="sos-info"><span style="font-size:16px;">🏥</span><span>Nearest medical unit: <strong style="color:var(--text);">2.3 km · Alpha-7 shelter</strong></span></div>
+  </div>
+  <button class="sos-cancel" onclick="go('home')">Cancel — Go Back</button>
+</div>
+
+</div></div><!-- /screen /phone -->
+<div class="desktop-hint">LIFELINE · CONCEPT PROTOTYPE · INTERACTIVE DEMO</div>
+
+<script>
+function go(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function selectMood(btn){
+  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+</script>
+</body>
+</html>
