@@ -186,6 +186,48 @@ tailwind.config = {
     <p>Demonstrates information theory application to search problems, comparison of greedy vs. information-optimal strategies, and awareness of the human-AI intuition gap. The side-by-side visualisation of both approaches makes the information-theoretic concept tangible.</p>
   </section>
 
+  <!-- ============================================================ -->
+  <!-- WHERE THIS COULD GO -->
+  <!-- ============================================================ -->
+  <section class="project-block" style="border-bottom: none;">
+    <div class="section-label"><span>Where This Could Go</span></div>
+    <p style="color: #8a887f; margin-bottom: 2rem;">
+      These implementations are complete as learning tools. If I were to scale them into production-grade systems, here&rsquo;s what would change.
+    </p>
+
+    <p class="subhead">Performance Layer</p>
+    <ul style="list-style: none; padding: 0;">
+      <li style="padding: 0.5rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.04);"><span style="color: #c9a96e; font-family: 'DM Mono', monospace; font-size: 11px; margin-right: 0.5rem;">&rsaquo;</span>Move core algorithms to C++ or Rust for memory-efficient game tree traversal</li>
+      <li style="padding: 0.5rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.04);"><span style="color: #c9a96e; font-family: 'DM Mono', monospace; font-size: 11px; margin-right: 0.5rem;">&rsaquo;</span>Implement iterative deepening with transposition tables for Connect 4 (cache repeated positions across search branches)</li>
+      <li style="padding: 0.5rem 0;"><span style="color: #c9a96e; font-family: 'DM Mono', monospace; font-size: 11px; margin-right: 0.5rem;">&rsaquo;</span>Parallelise N-Queens constraint propagation across multiple workers for N &gt; 20</li>
+    </ul>
+
+    <p class="subhead">Architecture Layer</p>
+    <ul style="list-style: none; padding: 0;">
+      <li style="padding: 0.5rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.04);"><span style="color: #c9a96e; font-family: 'DM Mono', monospace; font-size: 11px; margin-right: 0.5rem;">&rsaquo;</span>Decouple game logic from visualisation into a proper MVC structure</li>
+      <li style="padding: 0.5rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.04);"><span style="color: #c9a96e; font-family: 'DM Mono', monospace; font-size: 11px; margin-right: 0.5rem;">&rsaquo;</span>Build a unified benchmark harness that compares algorithms across games using standardised metrics (nodes/second, pruning efficiency, solve time)</li>
+      <li style="padding: 0.5rem 0;"><span style="color: #c9a96e; font-family: 'DM Mono', monospace; font-size: 11px; margin-right: 0.5rem;">&rsaquo;</span>Expose algorithms via API for integration into larger systems</li>
+    </ul>
+
+    <p class="subhead">AI Integration</p>
+    <ul style="list-style: none; padding: 0;">
+      <li style="padding: 0.5rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.04);"><span style="color: #c9a96e; font-family: 'DM Mono', monospace; font-size: 11px; margin-right: 0.5rem;">&rsaquo;</span>Replace hand-coded heuristics in Connect 4 with learned evaluation functions (supervised learning on expert games, or self-play reinforcement learning)</li>
+      <li style="padding: 0.5rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.04);"><span style="color: #c9a96e; font-family: 'DM Mono', monospace; font-size: 11px; margin-right: 0.5rem;">&rsaquo;</span>Use Monte Carlo Tree Search (MCTS) as a comparison baseline &mdash; especially relevant since MCTS powers modern game AI (AlphaGo, MuZero)</li>
+      <li style="padding: 0.5rem 0;"><span style="color: #c9a96e; font-family: 'DM Mono', monospace; font-size: 11px; margin-right: 0.5rem;">&rsaquo;</span>For Mastermind: experiment with neural network-based guessing policies trained on information-gain maximisation</li>
+    </ul>
+
+    <p class="subhead">Multi-User &amp; Real-Time</p>
+    <ul style="list-style: none; padding: 0;">
+      <li style="padding: 0.5rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.04);"><span style="color: #c9a96e; font-family: 'DM Mono', monospace; font-size: 11px; margin-right: 0.5rem;">&rsaquo;</span>Real-time multiplayer Connect 4 with server-side AI opponents at selectable difficulty (depth limits)</li>
+      <li style="padding: 0.5rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.04);"><span style="color: #c9a96e; font-family: 'DM Mono', monospace; font-size: 11px; margin-right: 0.5rem;">&rsaquo;</span>Collaborative N-Queens solver: multiple users place queens simultaneously, with live constraint visualisation showing how each placement affects others</li>
+      <li style="padding: 0.5rem 0;"><span style="color: #c9a96e; font-family: 'DM Mono', monospace; font-size: 11px; margin-right: 0.5rem;">&rsaquo;</span>Mastermind tournaments: human vs. human, human vs. AI, AI vs. AI &mdash; with Elo-style rating to quantify strategy strength</li>
+    </ul>
+
+    <div class="insight-box" style="margin-top: 2rem;">
+      <p style="color: #e8e6df; font-style: italic;">These extensions aren&rsquo;t hypothetical wish-lists &mdash; they&rsquo;re engineering steps I understand how to take. The current projects are proof of concept. The next stage is system design.</p>
+    </div>
+  </section>
+
   <div style="text-align: center; margin-top: 4rem; padding-top: 3rem; border-top: 0.5px solid rgba(255,255,255,0.07);">
     <a href="https://github.com/RachitAgrawal146/game-algorithms-java" target="_blank" rel="noopener" class="nav-back" style="margin-right: 2rem;">View Source on GitHub &nearr;</a>
     <a href="https://rachitagrawal146.github.io/game-algorithms-java/" target="_blank" rel="noopener" class="nav-back">Try the Interactive Demos &rarr;</a>
