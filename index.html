@@ -28,8 +28,8 @@ tailwind.config = {
         border: "rgba(255,255,255,0.07)",
         "border-active": "rgba(255,255,255,0.12)",
         "text-primary": "#e8e6df",
-        "text-muted": "#8a887f",
-        "text-dim": "#4a4844",
+        "text-muted": "#a09d93",
+        "text-dim": "#5e5b54",
         gold: "#c9a96e",
         teal: "#7ab0a8",
       },
@@ -52,7 +52,7 @@ tailwind.config = {
     background-color: #0c0c0b;
     color: #e8e6df;
     font-family: 'Inter', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -74,7 +74,7 @@ tailwind.config = {
   /* Section label with extending line */
   .section-label {
     font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.25em;
     color: #c9a96e;
@@ -93,7 +93,8 @@ tailwind.config = {
   /* Section divider */
   .section-divider {
     border: none;
-    border-top: 0.5px solid rgba(255,255,255,0.07);
+    border-top: 1px solid rgba(255,255,255,0.12);
+    margin: 0;
   }
 
   /* Scroll reveal */
@@ -142,7 +143,7 @@ tailwind.config = {
     letter-spacing: 0.15em;
     padding: 0.35rem 0.75rem;
     border: 0.5px solid rgba(255,255,255,0.1);
-    color: #8a887f;
+    color: #a09d93;
     display: inline-block;
   }
 
@@ -163,7 +164,7 @@ tailwind.config = {
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: #4a4844;
+    color: #5e5b54;
     text-align: left;
     padding: 0.75rem 0;
     border-bottom: 0.5px solid rgba(255,255,255,0.07);
@@ -244,7 +245,7 @@ tailwind.config = {
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #8a887f;
+    color: #a09d93;
     padding: 0.5rem;
     transition: color 0.3s;
   }
@@ -424,14 +425,14 @@ tailwind.config = {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    color: #4a4844;
+    color: #5e5b54;
   }
   .photo-slot-placeholder span {
     font-family: 'DM Mono', monospace;
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: #4a4844;
+    color: #5e5b54;
     text-align: center;
     padding: 0 1rem;
   }
@@ -775,7 +776,7 @@ tailwind.config = {
     font-weight: 500;
   }
   .chapter-mark-sep {
-    color: #4a4844;
+    color: #5e5b54;
   }
   .chapter-mark-title {
     color: #c4c2bd;
@@ -1186,7 +1187,7 @@ tailwind.config = {
             </span>
           </h1>
 
-          <p class="text-lg text-text-muted leading-relaxed mb-10 mt-10 hero-load hero-load-delay2" style="font-weight: 300;">
+          <p class="text-lg text-text-muted leading-relaxed mb-10 mt-10 hero-load hero-load-delay2">
             I build systems, perform on stage, and try to make the complex feel human. From Ranchi, shaped by silence, working on things that matter.
           </p>
 
@@ -1220,11 +1221,11 @@ tailwind.config = {
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">01 &mdash; About</span></div>
 
-      <blockquote class="font-display italic text-[clamp(1.8rem,4vw,2.8rem)] leading-[1.2] text-text-primary mb-12" style="font-weight: 300;">
+      <blockquote class="font-display italic text-[clamp(1.8rem,4vw,2.8rem)] leading-[1.2] text-text-primary mb-12">
         <span class="text-type quote-typewriter" data-text="&ldquo;Most people learn in straight lines. I learned under trees.&rdquo;"><span class="text-type-text"></span><span class="text-type-cursor"></span></span>
       </blockquote>
 
-      <div class="space-y-6 text-text-muted" style="font-weight: 300;">
+      <div class="space-y-6 text-text-muted">
         <p>
           I&rsquo;m a Grade 11 student at Sahyadri School (KFI), Pune &mdash; a boarding school built on the philosophy of Jiddu Krishnamurti, where learning isn&rsquo;t confined to syllabi and growth isn&rsquo;t measured only in grades.
         </p>
@@ -1263,7 +1264,7 @@ tailwind.config = {
         </div>
       </div>
       <blockquote class="text-center sm:text-left">
-        <p class="font-display italic text-[clamp(1.1rem,2.5vw,1.5rem)] leading-[1.4] text-text-primary mb-4" style="font-weight: 300;">
+        <p class="font-display italic text-[clamp(1.1rem,2.5vw,1.5rem)] leading-[1.4] text-text-primary mb-4">
           &ldquo;There is no end to education. It is not that you read a book, pass an examination, and finish with education. The whole of life, from the moment you are born to the moment you die, is a process of learning.&rdquo;
         </p>
         <cite class="font-mono text-[9px] uppercase tracking-[0.2em] text-text-dim not-italic">Jiddu Krishnamurti, founder of KFI</cite>
@@ -1280,7 +1281,7 @@ tailwind.config = {
     .jr-section {
       position: relative;
       /* Each milestone takes ~80vh of scroll. 15 items → 12 viewports */
-      height: 1200vh;
+      height: 560vh;
     }
     /* Sticky stage that pins to viewport while horizontal motion plays */
     .jr-sticky {
@@ -1313,7 +1314,7 @@ tailwind.config = {
       font-size: 9px;
       text-transform: uppercase;
       letter-spacing: 0.3em;
-      color: #4a4844;
+      color: #5e5b54;
       z-index: 5;
       pointer-events: none;
     }
@@ -1433,7 +1434,7 @@ tailwind.config = {
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: #4a4844;
+      background: #5e5b54;
       transform: translate(-50%, -50%);
       transition: background 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
       z-index: 3;
@@ -1520,7 +1521,7 @@ tailwind.config = {
       font-weight: 300;
       font-size: 0.82rem;
       line-height: 1.55;
-      color: #8a887f;
+      color: #a09d93;
     }
 
     /* Counter — showing position in the journey */
@@ -1533,7 +1534,7 @@ tailwind.config = {
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.25em;
-      color: #4a4844;
+      color: #5e5b54;
       z-index: 5;
       text-align: right;
       line-height: 1.8;
@@ -1593,7 +1594,7 @@ tailwind.config = {
       <!-- Counter -->
       <div class="jr-counter">
         <span class="jr-counter-num" id="jrCounterNum">01</span>
-        <span id="jrCounterTotal">/ 15</span>
+        <span id="jrCounterTotal">/ 7</span>
       </div>
 
       <!-- The horizontal track -->
@@ -1619,7 +1620,7 @@ tailwind.config = {
             <div class="jr-card">
               <div class="jr-year">2019</div>
               <div class="jr-title">Left home at nine</div>
-              <div class="jr-detail">Joined Sahyadri School (KFI), Pune &mdash; Grade 4. Built on the philosophy of J. Krishnamurti.</div>
+              <div class="jr-detail">Joined Sahyadri School (KFI), Pune &mdash; Grade 4.</div>
             </div>
           </div>
 
@@ -1629,27 +1630,7 @@ tailwind.config = {
             <div class="jr-card">
               <div class="jr-year">2023</div>
               <div class="jr-title">First high-altitude trek</div>
-              <div class="jr-detail">Pandav Patthar &mdash; 12,500 ft. The same attention Astachal had been teaching.</div>
-            </div>
-          </div>
-
-          <div class="jr-item" data-jr>
-            <div class="jr-node"></div>
-            <div class="jr-tether"></div>
-            <div class="jr-card">
-              <div class="jr-year">2023</div>
-              <div class="jr-title">Community immersion</div>
-              <div class="jr-detail">Lok Biradari Prakalp, Hemalkasa &middot; Anandvan Ashram &mdash; ten days in service.</div>
-            </div>
-          </div>
-
-          <div class="jr-item" data-jr>
-            <div class="jr-node"></div>
-            <div class="jr-tether"></div>
-            <div class="jr-card">
-              <div class="jr-year">2024</div>
-              <div class="jr-title">Became &ldquo;the old man&rdquo;</div>
-              <div class="jr-detail">Cast as an old man in a school play. In one rehearsal, something changed.</div>
+              <div class="jr-detail">Pandav Patthar &mdash; 12,500 ft.</div>
             </div>
           </div>
 
@@ -1659,27 +1640,7 @@ tailwind.config = {
             <div class="jr-card">
               <div class="jr-year">2024</div>
               <div class="jr-title">Vriksha</div>
-              <div class="jr-detail">Lead role as Pandya Ji. Half the audience in tears. Does greed get in the way of the tree?</div>
-            </div>
-          </div>
-
-          <div class="jr-item" data-jr>
-            <div class="jr-node"></div>
-            <div class="jr-tether"></div>
-            <div class="jr-card">
-              <div class="jr-year">2024</div>
-              <div class="jr-title">Lifeline wins Hilltop Entrepreneur</div>
-              <div class="jr-detail">Refugee communication app &mdash; won Sahyadri&rsquo;s entrepreneurship competition.</div>
-            </div>
-          </div>
-
-          <div class="jr-item" data-jr>
-            <div class="jr-node"></div>
-            <div class="jr-tether"></div>
-            <div class="jr-card">
-              <div class="jr-year">2024</div>
-              <div class="jr-title">Bali Pass</div>
-              <div class="jr-detail">16,000 ft, Uttarakhand.</div>
+              <div class="jr-detail">Lead role as Pandya Ji. Half the audience in tears.</div>
             </div>
           </div>
 
@@ -1697,49 +1658,9 @@ tailwind.config = {
             <div class="jr-node"></div>
             <div class="jr-tether"></div>
             <div class="jr-card">
-              <div class="jr-year">2024</div>
-              <div class="jr-title">Lead Editor</div>
-              <div class="jr-detail">Tiwai Tales (newsletter) &amp; Ninad &rsquo;26 (annual magazine). Content, layout, voice.</div>
-            </div>
-          </div>
-
-          <div class="jr-item" data-jr>
-            <div class="jr-node"></div>
-            <div class="jr-tether"></div>
-            <div class="jr-card">
-              <div class="jr-year">2024</div>
-              <div class="jr-title">Research begins</div>
-              <div class="jr-detail">Polygence &mdash; game-theoretic trust modelling in multi-agent systems.</div>
-            </div>
-          </div>
-
-          <div class="jr-item" data-jr>
-            <div class="jr-node"></div>
-            <div class="jr-tether"></div>
-            <div class="jr-card">
-              <div class="jr-year">2025</div>
-              <div class="jr-title">Ashoka Young Scholars</div>
-              <div class="jr-detail">Ten days in Gurgaon. Met Prof. Sudheendra Hangal (Stanford CS).</div>
-            </div>
-          </div>
-
-          <div class="jr-item" data-jr>
-            <div class="jr-node"></div>
-            <div class="jr-tether"></div>
-            <div class="jr-card">
               <div class="jr-year">2025</div>
               <div class="jr-title">Paper published</div>
-              <div class="jr-detail">&ldquo;From Game-Theoretic Poker to the Collapse of Trust: Modelling Strategic Deception.&rdquo;</div>
-            </div>
-          </div>
-
-          <div class="jr-item" data-jr>
-            <div class="jr-node"></div>
-            <div class="jr-tether"></div>
-            <div class="jr-card">
-              <div class="jr-year">2025</div>
-              <div class="jr-title">Game Algorithms Engine</div>
-              <div class="jr-detail">Interactive visualisers, empirical benchmarks, and the finding that pruning has a cost.</div>
+              <div class="jr-detail">Game-theoretic trust modelling in multi-agent systems.</div>
             </div>
           </div>
 
@@ -1749,7 +1670,7 @@ tailwind.config = {
             <div class="jr-card">
               <div class="jr-year">Now</div>
               <div class="jr-title">Still listening</div>
-              <div class="jr-detail">Sitting with things I don&rsquo;t understand yet. The journey continues.</div>
+              <div class="jr-detail">The journey continues.</div>
             </div>
           </div>
 
@@ -1759,6 +1680,11 @@ tailwind.config = {
       <!-- Scroll hint -->
       <div class="jr-hint">
         Scroll to walk the journey <span class="arrow">&rarr;</span>
+      </div>
+
+      <!-- Down arrow at bottom -->
+      <div style="position: absolute; bottom: 2rem; left: 0; right: 0; text-align: center; z-index: 5; pointer-events: none;">
+        <span style="font-size: 1.5rem; color: #c9a96e; animation: jrHintPulse 2.4s ease-in-out infinite; display: inline-block;">&darr;</span>
       </div>
 
     </div>
@@ -1868,11 +1794,11 @@ tailwind.config = {
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">03 &mdash; Why Game Algorithms?</span></div>
 
-      <h2 class="font-display italic text-[clamp(1.8rem,4vw,2.6rem)] leading-[1.2] text-text-primary mb-10" style="font-weight: 300;">
+      <h2 class="font-display italic text-[clamp(1.8rem,4vw,2.6rem)] leading-[1.2] text-text-primary mb-10">
         Games are the smallest environments where the hardest problems in computer science appear in their purest form.
       </h2>
 
-      <div class="space-y-6 text-text-muted" style="font-weight: 300;">
+      <div class="space-y-6 text-text-muted">
         <p>
           A chess engine doesn&rsquo;t just play chess &mdash; it makes sequential decisions under uncertainty, optimises across exponentially large search spaces, and manages the fundamental tradeoff between exploration and exploitation. These are the same problems that power autonomous vehicles, trading algorithms, and AI systems operating in the real world.
         </p>
@@ -1895,7 +1821,7 @@ tailwind.config = {
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">04 &mdash; Projects</span></div>
 
-      <p class="text-text-primary text-lg mb-12" style="font-weight: 300;">
+      <p class="text-text-primary text-lg mb-12">
         Projects exploring how decision-making works, how technology can serve the underserved, and where systems break.
       </p>
 
@@ -1909,10 +1835,10 @@ tailwind.config = {
           <span class="tag">Interactive Demos</span>
         </div>
         <h3 class="font-display text-2xl text-text-primary mb-3" style="font-weight: 400;">Game Algorithms Engine</h3>
-        <p class="text-text-muted text-sm mb-4" style="font-weight: 300;">
+        <p class="text-text-muted text-sm mb-4">
           Implementations of minimax with alpha-beta pruning (Connect 4), constraint satisfaction solvers (N-Queens), and entropy-based search (Mastermind) &mdash; each with interactive HTML visualisers and empirical benchmarks. Built to explore how strategic decision-making emerges in constrained systems &mdash; and how it breaks.
         </p>
-        <p class="text-text-muted text-sm mb-6" style="font-weight: 300;">
+        <p class="text-text-muted text-sm mb-6">
           The most interesting finding: an algorithm&rsquo;s real-world efficiency depends not on theoretical complexity alone, but on the ratio between the cost of its optimisation strategy and the savings that strategy produces.
         </p>
         <div class="flex flex-wrap gap-4">
@@ -1932,7 +1858,7 @@ tailwind.config = {
             <span class="tag">Claude</span>
           </div>
           <h3 class="font-display text-xl text-text-primary mb-2" style="font-weight: 400;">Sage &mdash; AI Phone Assistant for Seniors</h3>
-          <p class="text-text-muted text-sm" style="font-weight: 300;">
+          <p class="text-text-muted text-sm">
             An Android app bridging the digital literacy gap for India&rsquo;s 140 million seniors who own smartphones but lack the confidence to use them. Unlike tools that merely instruct, Sage operates the phone on the user&rsquo;s behalf &mdash; leveraging Android&rsquo;s Accessibility Service API to execute tasks like sending WhatsApp messages and adjusting settings via voice commands, requiring only a single confirmation tap. Combines autonomous screen control, a daily digest of tips and scam alerts, and a bilingual conversational assistant powered by Claude.
           </p>
           <div class="mt-4">
@@ -1947,7 +1873,7 @@ tailwind.config = {
             <span class="tag">Offline-First</span>
           </div>
           <h3 class="font-display text-xl text-text-primary mb-2" style="font-weight: 400;">Lifeline &mdash; Crisis Communication for Conflict Zones</h3>
-          <p class="text-text-muted text-sm" style="font-weight: 300;">
+          <p class="text-text-muted text-sm">
             An AI-assisted mobile app for civilians in active conflict zones, integrating real-time safe-route navigation, survivor proximity mapping, government and humanitarian broadcast aggregation, and psychological wellbeing support into a single offline-capable platform. Built around three stages of crisis response &mdash; immediate physical safety, coordinated evacuation, and long-term emotional recovery. Won 1st place at Sahyadri School&rsquo;s Hilltop Entrepreneur competition.
           </p>
           <div class="mt-4">
@@ -1969,31 +1895,31 @@ tailwind.config = {
       <div class="space-y-10">
         <div>
           <h3 class="font-display italic text-2xl text-text-primary mb-3" style="font-weight: 400;">Start with the structure, not the code.</h3>
-          <p class="text-text-muted" style="font-weight: 300;">
+          <p class="text-text-muted">
             Before writing any implementation, I map the problem space: What are the constraints? What&rsquo;s the branching factor? Where does complexity actually come from? The code is the last step &mdash; understanding is the first.
           </p>
         </div>
 
         <div>
           <h3 class="font-display italic text-2xl text-text-primary mb-3" style="font-weight: 400;">Build to observe, not just to solve.</h3>
-          <p class="text-text-muted" style="font-weight: 300;">
+          <p class="text-text-muted">
             Every project includes visualisation infrastructure: not as a feature, but as a debugging and understanding tool. I&rsquo;ve learned more from watching algorithms behave unexpectedly than from reading about how they should behave.
           </p>
         </div>
 
         <div>
           <h3 class="font-display italic text-2xl text-text-primary mb-3" style="font-weight: 400;">Measure, don&rsquo;t assume.</h3>
-          <p class="text-text-muted" style="font-weight: 300;">
+          <p class="text-text-muted">
             Theoretical complexity tells you the shape of a problem. Empirical benchmarking tells you what actually happens. I build measurement into every system: nodes evaluated, time elapsed, pruning rates, convergence behaviour. The numbers often contradict expectations &mdash; and that&rsquo;s where learning happens.
           </p>
         </div>
 
         <div>
           <h3 class="font-display italic text-2xl text-text-primary mb-3" style="font-weight: 400;">Look for cross-system patterns.</h3>
-          <p class="text-text-muted" style="font-weight: 300;">
+          <p class="text-text-muted">
             The most useful insight from this project didn&rsquo;t come from any single algorithm &mdash; it came from comparing all three. Each used a different optimisation strategy (pruning, propagation, entropy-based search), and each demonstrated the same principle: optimisation has overhead, and overhead must be justified by savings.
           </p>
-          <p class="text-gold mt-4 italic" style="font-weight: 300;">
+          <p class="text-gold mt-4 italic">
             This meta-pattern &mdash; that the cost of being clever is itself a variable to optimise &mdash; now shapes how I think about every system I design.
           </p>
         </div>
@@ -2011,44 +1937,41 @@ tailwind.config = {
       <div class="section-label"><span class="shiny-text">06 &mdash; Academics &amp; Recognition</span></div>
       <div class="space-y-10">
 
-        <div>
+        <div class="pl-5 border-l-2 border-gold/40">
           <p class="font-mono text-[9px] uppercase tracking-[0.25em] text-gold mb-3">ICSE Board Examinations &middot; 2024</p>
           <h3 class="font-display text-xl text-text-primary mb-2" style="font-weight: 400;">Aggregate: 99%</h3>
-          <p class="text-text-muted text-sm" style="font-weight: 300;">
-            Physics 100 &middot; Biology 100 &middot; Mathematics 99 &middot; Computer Science 99. Top academic performance in national standardised examinations.
+          <p class="text-text-muted text-sm">
+            Physics 100 &middot; Biology 100 &middot; Mathematics 99 &middot; Computer Science 99.
           </p>
         </div>
 
-        <div>
+        <div class="pl-5 border-l-2 border-gold/40">
           <p class="font-mono text-[9px] uppercase tracking-[0.25em] text-gold mb-3">Ashoka Young Scholars Programme &middot; 2025</p>
           <h3 class="font-display text-xl text-text-primary mb-2" style="font-weight: 400;">Selected for competitive ten-day residential programme</h3>
-          <p class="text-text-muted text-sm" style="font-weight: 300;">
-            Technology, Data &amp; Computer Science track. Engaged with faculty seminars on AI, privacy, and data-driven decision-making. Connected with Prof. Sudheendra Hangal (Stanford CS), whose recommended reading (<em class="text-text-primary not-italic">Thinking Fast and Slow</em>, <em class="text-text-primary not-italic">How to Solve It</em>) directly shaped my approach to problem decomposition.
+          <p class="text-text-muted text-sm">
+            Technology, Data &amp; Computer Science track. Connected with Prof. Sudheendra Hangal (Stanford CS).
           </p>
         </div>
 
-        <div>
+        <div class="pl-5 border-l-2 border-gold/40">
           <p class="font-mono text-[9px] uppercase tracking-[0.25em] text-gold mb-3">Polygence Research Publication &middot; 2025</p>
           <h3 class="font-display italic text-xl text-text-primary mb-2" style="font-weight: 400;">From Game-Theoretic Poker to the Collapse of Trust</h3>
-          <p class="text-text-muted text-sm mb-2" style="font-weight: 300;">
-            Modelling Strategic Behaviour in Multi-Agent Systems
-          </p>
-          <p class="text-text-muted text-sm" style="font-weight: 300;">
-            Independent research using Kuhn Poker as a formal environment to study trust dynamics among adaptive agents. Connects to active questions in AI safety and multi-agent coordination.
+          <p class="text-text-muted text-sm">
+            Independent research using Kuhn Poker to study trust dynamics among adaptive agents. Connects to AI safety and multi-agent coordination.
           </p>
         </div>
 
-        <div>
+        <div class="pl-5 border-l-2 border-gold/40">
           <p class="font-mono text-[9px] uppercase tracking-[0.25em] text-gold mb-3">Hilltop Entrepreneur &middot; 1st Place &middot; 2024</p>
-          <h3 class="font-display text-xl text-text-primary mb-2" style="font-weight: 400;">Lifeline &mdash; AI-equipped communication app for civilians in conflict zones</h3>
-          <p class="text-text-muted text-sm" style="font-weight: 300;">
-            Won Sahyadri School&rsquo;s Shark Tank competition. Presented before the full school assembly.
+          <h3 class="font-display text-xl text-text-primary mb-2" style="font-weight: 400;">Lifeline &mdash; Communication app for civilians in conflict zones</h3>
+          <p class="text-text-muted text-sm">
+            Won Sahyadri School&rsquo;s Shark Tank competition.
           </p>
         </div>
 
-        <div>
+        <div class="pl-5 border-l-2 border-gold/40">
           <p class="font-mono text-[9px] uppercase tracking-[0.25em] text-gold mb-3">UNESCO ESD Certification</p>
-          <p class="text-text-muted text-sm" style="font-weight: 300;">
+          <p class="text-text-muted text-sm">
             Sustainable construction training at Hunnarshala Foundation, Bhuj.
             <a href="images/ESD.jpg" target="_blank" class="link-anim text-gold ml-1">View certificate &rarr;</a>
           </p>
@@ -2067,12 +1990,12 @@ tailwind.config = {
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">07 &mdash; Theatre</span></div>
 
-      <p class="text-text-primary text-lg mb-8" style="font-weight: 300;">
+      <p class="text-text-primary text-lg mb-8">
         This is not a hobby. Each play was chosen because it had something to say. The stage as a social tool &mdash; for ideas that wouldn&rsquo;t otherwise reach the people who needed to hear them.
       </p>
       <div class="bg-surface p-8 md:p-10 border border-border mb-12">
         <p class="font-mono text-[9px] uppercase tracking-[0.2em] text-text-dim mb-5">The Origin</p>
-        <p class="text-text-muted" style="font-weight: 300;">
+        <p class="text-text-muted">
           In 9th grade, I was cast as an old man &mdash; partly because my Hindi was strong enough. In one rehearsal, something clicked. I realised the character was exactly like someone I&rsquo;d spent years watching closely: wise and childish at the same time. I started crying in the middle of a sad scene. My teacher, who was directing, started crying too. That was the day I became the old man of the school.
         </p>
       </div>
@@ -2122,10 +2045,10 @@ tailwind.config = {
       <!-- Vriksha expanded -->
       <div class="mt-12 pl-6 border-l border-gold/20">
         <p class="font-mono text-[9px] uppercase tracking-[0.2em] text-gold mb-4">Vriksha &mdash; The Full Story</p>
-        <p class="text-text-muted text-sm mb-4" style="font-weight: 300;">
+        <p class="text-text-muted text-sm mb-4">
           A father watches his son turn into a tree. He grieves. The tree produces gold. The family gets rich. They expand their house. The building plans conflict with the tree. They cut it down. Only the granddaughter is human enough to realise what they&rsquo;ve done.
         </p>
-        <p class="text-text-muted text-sm italic mb-6" style="font-weight: 300;">
+        <p class="text-text-muted text-sm italic mb-6">
           Half the audience was in tears. The question they went home with: does greed get in the way of human connection?
         </p>
         <div class="photo-slot ratio-16-9 mb-6 max-w-[560px]">
@@ -2137,7 +2060,7 @@ tailwind.config = {
       <!-- Twelve Angry Jurors expanded -->
       <div class="mt-12 pl-6 border-l border-gold/20">
         <p class="font-mono text-[9px] uppercase tracking-[0.2em] text-gold mb-4">Twelve Angry Jurors &mdash; Full Performance</p>
-        <p class="text-text-muted text-sm mb-6" style="font-weight: 300;">
+        <p class="text-text-muted text-sm mb-6">
           A bilingual adaptation of Reginald Rose&rsquo;s courtroom drama. Twelve jurors deliberating a single boy&rsquo;s life &mdash; the only place in theatre where conviction and doubt are the entire stage. I played Juror #9: the old man who sees what nobody else is willing to see.
         </p>
         <div class="photo-slot ratio-16-9 mb-6 max-w-[560px]">
@@ -2160,25 +2083,25 @@ tailwind.config = {
       <div class="space-y-6">
         <div class="flex gap-4 items-baseline">
           <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-text-dim w-20 shrink-0">Editorial</span>
-          <p class="text-text-muted text-sm" style="font-weight: 300;">
+          <p class="text-text-muted text-sm">
             Lead Editor of <em class="text-text-primary not-italic">Tiwai Tales</em> (school newsletter) and <em class="text-text-primary not-italic">Ninad &rsquo;26</em> (annual magazine). Oversaw content, coordinated student editorial teams, managed design and publication.
           </p>
         </div>
         <div class="flex gap-4 items-baseline">
           <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-text-dim w-20 shrink-0">Stage</span>
-          <p class="text-text-muted text-sm" style="font-weight: 300;">
+          <p class="text-text-muted text-sm">
             Emcee for Farewell &rsquo;24. Interviewed <em class="text-text-primary not-italic">Master Manjunath</em> &mdash; known for his role as Swami in <em>Malgudi Days</em> &mdash; on stage before the entire school. A conversation about craft, memory, and what it means to inhabit a character for decades.
           </p>
         </div>
         <div class="flex gap-4 items-baseline">
           <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-text-dim w-20 shrink-0">Community</span>
-          <p class="text-text-muted text-sm" style="font-weight: 300;">
+          <p class="text-text-muted text-sm">
             Anchor of the Almabase Committee &mdash; led the initiative to build a digital platform connecting Sahyadri alumni with current students.
           </p>
         </div>
         <div class="flex gap-4 items-baseline">
           <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-text-dim w-20 shrink-0">Farewell</span>
-          <p class="text-text-muted text-sm" style="font-weight: 300;">
+          <p class="text-text-muted text-sm">
             Hosted the Farewell &rsquo;26 ceremony &mdash; anchored the event for the graduating batch, coordinating performances, speeches, and tributes on stage.
           </p>
         </div>
@@ -2310,7 +2233,7 @@ tailwind.config = {
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">10 &mdash; Currently</span></div>
 
-      <p class="text-text-muted text-sm mb-8" style="font-weight: 300;">Some questions I&rsquo;m sitting with right now:</p>
+      <p class="text-text-muted text-sm mb-8">Some questions I&rsquo;m sitting with right now:</p>
 
       <div class="currently-box glass-currently">
         <div class="glass-sheen" aria-hidden="true"></div>
@@ -2358,32 +2281,32 @@ tailwind.config = {
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">12 &mdash; Contact</span></div>
 
-      <h2 class="font-display italic text-[clamp(2.5rem,6vw,4rem)] leading-[1.1] text-text-primary mb-6" style="font-weight: 300;">
+      <h2 class="font-display italic text-[clamp(2.5rem,6vw,4rem)] leading-[1.1] text-text-primary mb-6">
         Let&rsquo;s talk.
       </h2>
 
-      <p class="text-text-muted text-lg mb-12" style="font-weight: 300;">
+      <p class="text-text-muted text-lg mb-12">
         I&rsquo;m always interested in research collaborations, interesting problems, and conversations that don&rsquo;t have easy answers.
       </p>
       <div class="space-y-4">
         <a href="mailto:agrawalrachit146@gmail.com" class="flex items-center gap-3 text-gold hover:text-text-primary transition-colors duration-300 group">
           <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-text-dim w-12">Email</span>
-          <span class="text-sm" style="font-weight: 300;">agrawalrachit146@gmail.com</span>
+          <span class="text-sm">agrawalrachit146@gmail.com</span>
           <span class="text-xs opacity-0 group-hover:opacity-100 transition-opacity">&rarr;</span>
         </a>
         <a href="https://github.com/RachitAgrawal146" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-muted hover:text-gold transition-colors duration-300 group">
           <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-text-dim w-12">GitHub</span>
-          <span class="text-sm" style="font-weight: 300;">RachitAgrawal146</span>
+          <span class="text-sm">RachitAgrawal146</span>
           <span class="text-xs opacity-0 group-hover:opacity-100 transition-opacity">&nearr;</span>
         </a>
         <a href="https://open.substack.com/pub/rachit1548" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-muted hover:text-gold transition-colors duration-300 group">
           <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-text-dim w-12">Blog</span>
-          <span class="text-sm" style="font-weight: 300;">Substack</span>
+          <span class="text-sm">Substack</span>
           <span class="text-xs opacity-0 group-hover:opacity-100 transition-opacity">&nearr;</span>
         </a>
         <a href="https://youtu.be/GBrrRnUvKd4?si=LMiIi-zYoKtlLzdv" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-text-muted hover:text-gold transition-colors duration-300 group">
           <span class="font-mono text-[9px] uppercase tracking-[0.2em] text-text-dim w-12">Watch</span>
-          <span class="text-sm" style="font-weight: 300;">Vriksha &middot; Twelve Angry Jurors</span>
+          <span class="text-sm">Vriksha &middot; Twelve Angry Jurors</span>
           <span class="text-xs opacity-0 group-hover:opacity-100 transition-opacity">&nearr;</span>
         </a>
       </div>
@@ -2410,30 +2333,7 @@ tailwind.config = {
 (function() {
   'use strict';
 
-  // --- Nav hide/show on scroll ---
-  const navbar = document.getElementById('navbar');
-  let lastScroll = 0;
-  let ticking = false;
-
-  function updateNav() {
-    const currentScroll = window.scrollY;
-    if (currentScroll <= 80) {
-      navbar.classList.remove('hidden');
-    } else if (currentScroll > lastScroll && currentScroll > 200) {
-      navbar.classList.add('hidden');
-    } else if (currentScroll < lastScroll - 5) {
-      navbar.classList.remove('hidden');
-    }
-    lastScroll = currentScroll;
-    ticking = false;
-  }
-
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      requestAnimationFrame(updateNav);
-      ticking = true;
-    }
-  }, { passive: true });
+  // Nav always visible (auto-hide removed for easier navigation)
 
   // --- Scroll reveal with IntersectionObserver ---
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
