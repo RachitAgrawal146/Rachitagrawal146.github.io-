@@ -22,15 +22,15 @@ tailwind.config = {
   theme: {
     extend: {
       colors: {
-        bg: "#0c0c0b",
-        surface: "#141413",
-        surface2: "#1c1c1a",
-        border: "rgba(255,255,255,0.07)",
-        "border-active": "rgba(255,255,255,0.12)",
-        "text-primary": "#e8e6df",
+        bg: "#f0ece6",
+        surface: "#e8e4dd",
+        surface2: "#e0dcd5",
+        border: "rgba(0,0,0,0.08)",
+        "border-active": "rgba(0,0,0,0.12)",
+        "text-primary": "#1c1b1a",
         "text-muted": "#a09d93",
         "text-dim": "#5e5b54",
-        gold: "#c9a96e",
+        gold: "#8b7a56",
         teal: "#7ab0a8",
       },
       fontFamily: {
@@ -49,8 +49,8 @@ tailwind.config = {
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    background-color: #0c0c0b;
-    color: #e8e6df;
+    background-color: #f0ece6;
+    color: #1c1b1a;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     line-height: 1.7;
@@ -65,7 +65,7 @@ tailwind.config = {
     inset: 0;
     z-index: 9999;
     pointer-events: none;
-    opacity: 0.035;
+    opacity: 0.02;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-repeat: repeat;
     background-size: 256px 256px;
@@ -77,7 +77,7 @@ tailwind.config = {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.25em;
-    color: #c9a96e;
+    color: #8b7a56;
     display: flex;
     align-items: center;
     gap: 1.5rem;
@@ -87,13 +87,13 @@ tailwind.config = {
     content: '';
     flex: 1;
     height: 0.5px;
-    background: rgba(255,255,255,0.07);
+    background: rgba(0,0,0,0.08);
   }
 
   /* Section divider */
   .section-divider {
     border: none;
-    border-top: 1px solid rgba(255,255,255,0.12);
+    border-top: 1px solid rgba(0,0,0,0.12);
     margin: 0;
   }
 
@@ -121,10 +121,10 @@ tailwind.config = {
     left: 0;
     right: 0;
     z-index: 100;
-    background: rgba(12, 12, 11, 0.85);
+    background: rgba(240, 236, 230, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 0.5px solid rgba(255,255,255,0.05);
+    border-bottom: 0.5px solid rgba(0,0,0,0.06);
     transition: transform 0.4s ease;
   }
   .nav-bar.hidden { transform: translateY(-100%); }
@@ -133,7 +133,7 @@ tailwind.config = {
   a { color: inherit; text-decoration: none; }
 
   /* Selection */
-  ::selection { background: rgba(201, 169, 110, 0.3); color: #e8e6df; }
+  ::selection { background: rgba(139, 122, 86, 0.3); color: #1c1b1a; }
 
   /* Tag pill */
   .tag {
@@ -142,7 +142,7 @@ tailwind.config = {
     text-transform: uppercase;
     letter-spacing: 0.15em;
     padding: 0.35rem 0.75rem;
-    border: 0.5px solid rgba(255,255,255,0.1);
+    border: 0.5px solid rgba(0,0,0,0.1);
     color: #a09d93;
     display: inline-block;
   }
@@ -150,11 +150,11 @@ tailwind.config = {
   /* Project card */
   .project-card {
     padding: 2.5rem 0;
-    border-bottom: 0.5px solid rgba(255,255,255,0.07);
+    border-bottom: 0.5px solid rgba(0,0,0,0.08);
     transition: background 0.4s ease;
   }
   .project-card:hover {
-    background: rgba(255,255,255,0.015);
+    background: rgba(0,0,0,0.02);
   }
 
   /* Theatre table */
@@ -167,25 +167,25 @@ tailwind.config = {
     color: #5e5b54;
     text-align: left;
     padding: 0.75rem 0;
-    border-bottom: 0.5px solid rgba(255,255,255,0.07);
+    border-bottom: 0.5px solid rgba(0,0,0,0.08);
   }
   .theatre-table td {
     padding: 1rem 0;
-    border-bottom: 0.5px solid rgba(255,255,255,0.04);
+    border-bottom: 0.5px solid rgba(0,0,0,0.05);
     vertical-align: top;
   }
-  .theatre-table tr:hover td { color: #c9a96e; }
+  .theatre-table tr:hover td { color: #8b7a56; }
 
   /* Currently section — highlighted, brighter */
   .currently-box {
-    border: 1px solid rgba(201, 169, 110, 0.45);
+    border: 1px solid rgba(139, 122, 86, 0.45);
     padding: 3rem 3.25rem;
     position: relative;
-    background: linear-gradient(135deg, rgba(201, 169, 110, 0.045) 0%, rgba(201, 169, 110, 0.015) 100%);
+    background: linear-gradient(135deg, rgba(139, 122, 86, 0.045) 0%, rgba(139, 122, 86, 0.015) 100%);
     box-shadow:
-      0 0 0 1px rgba(201, 169, 110, 0.05),
-      0 8px 30px rgba(201, 169, 110, 0.06),
-      inset 0 0 60px rgba(201, 169, 110, 0.025);
+      0 0 0 1px rgba(139, 122, 86, 0.05),
+      0 8px 30px rgba(139, 122, 86, 0.06),
+      inset 0 0 60px rgba(139, 122, 86, 0.025);
   }
   .currently-box::before {
     content: 'pinned';
@@ -196,8 +196,8 @@ tailwind.config = {
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.25em;
-    color: #c9a96e;
-    background: #0c0c0b;
+    color: #8b7a56;
+    background: #f0ece6;
     padding: 0 0.6rem;
   }
   /* Subtle gold corner accents */
@@ -206,15 +206,15 @@ tailwind.config = {
     position: absolute;
     top: -1px; right: -1px;
     width: 24px; height: 24px;
-    border-top: 1px solid #c9a96e;
-    border-right: 1px solid #c9a96e;
+    border-top: 1px solid #8b7a56;
+    border-right: 1px solid #8b7a56;
     pointer-events: none;
   }
 
   /* Writing piece */
   .writing-piece {
     padding: 1.5rem 0;
-    border-bottom: 0.5px solid rgba(255,255,255,0.05);
+    border-bottom: 0.5px solid rgba(0,0,0,0.06);
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -228,10 +228,11 @@ tailwind.config = {
     left: 0;
     right: 0;
     z-index: 100;
-    background: rgba(12, 12, 11, 0.92);
+    background: rgba(240, 236, 230, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-top: 0.5px solid rgba(255,255,255,0.07);
+    border-top: 1px solid rgba(0,0,0,0.12);
+    margin: 0;
     padding: 0.75rem 0;
     display: none;
   }
@@ -249,7 +250,7 @@ tailwind.config = {
     padding: 0.5rem;
     transition: color 0.3s;
   }
-  .mobile-nav a:hover, .mobile-nav a.active { color: #c9a96e; }
+  .mobile-nav a:hover, .mobile-nav a.active { color: #8b7a56; }
 
 
   /* ===== SCROLL PROGRESS BAR ===== */
@@ -259,7 +260,7 @@ tailwind.config = {
     left: 0;
     height: 2px;
     width: 0%;
-    background: linear-gradient(90deg, #c9a96e, #e8d5b0);
+    background: linear-gradient(90deg, #8b7a56, #a08c64);
     z-index: 200;
     transition: none;
   }
@@ -286,8 +287,8 @@ tailwind.config = {
     width: 65%;
     height: 90%;
     background: radial-gradient(ellipse at center,
-      rgba(201, 169, 110, 0.07) 0%,
-      rgba(201, 169, 110, 0.025) 35%,
+      rgba(139, 122, 86, 0.07) 0%,
+      rgba(139, 122, 86, 0.025) 35%,
       transparent 65%);
     filter: blur(50px);
     pointer-events: none;
@@ -356,11 +357,11 @@ tailwind.config = {
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    border: 1.5px solid rgba(201, 169, 110, 0.55);
+    border: 1.5px solid rgba(139, 122, 86, 0.55);
     box-shadow:
-      inset 0 0 0 1px rgba(255, 220, 150, 0.15),
-      0 0 30px rgba(201, 169, 110, 0.18),
-      0 0 60px rgba(201, 169, 110, 0.10);
+      inset 0 0 0 1px rgba(139, 122, 86, 0.15),
+      0 0 30px rgba(139, 122, 86, 0.18),
+      0 0 60px rgba(139, 122, 86, 0.10);
     z-index: 3;
     pointer-events: none;
   }
@@ -370,9 +371,9 @@ tailwind.config = {
     inset: -22%;
     border-radius: 50%;
     background: radial-gradient(circle at center,
-      rgba(255, 230, 170, 0.28) 0%,
-      rgba(201, 169, 110, 0.16) 28%,
-      rgba(201, 169, 110, 0.06) 50%,
+      rgba(139, 122, 86, 0.28) 0%,
+      rgba(139, 122, 86, 0.16) 28%,
+      rgba(139, 122, 86, 0.06) 50%,
       transparent 72%);
     filter: blur(20px);
     z-index: 1;
@@ -395,8 +396,8 @@ tailwind.config = {
   .photo-slot {
     position: relative;
     width: 100%;
-    background: #141413;
-    border: 1px solid rgba(201, 169, 110, 0.25);
+    background: #e8e4dd;
+    border: 1px solid rgba(139, 122, 86, 0.25);
     overflow: hidden;
     transition: border-color 0.3s ease, transform 0.3s ease;
   }
@@ -404,11 +405,11 @@ tailwind.config = {
     content: '';
     position: absolute;
     inset: 0;
-    box-shadow: inset 0 0 0 1px rgba(255, 220, 150, 0.06);
+    box-shadow: inset 0 0 0 1px rgba(139, 122, 86, 0.06);
     pointer-events: none;
   }
   .photo-slot:hover {
-    border-color: rgba(201, 169, 110, 0.5);
+    border-color: rgba(139, 122, 86, 0.5);
     transform: translateY(-2px);
   }
   .photo-slot img {
@@ -461,11 +462,11 @@ tailwind.config = {
   .shiny-text {
     background: linear-gradient(
       110deg,
-      rgba(201, 169, 110, 0.5) 0%,
-      rgba(201, 169, 110, 0.5) 35%,
-      rgba(255, 240, 200, 1) 50%,
-      rgba(201, 169, 110, 0.5) 65%,
-      rgba(201, 169, 110, 0.5) 100%
+      rgba(139, 122, 86, 0.5) 0%,
+      rgba(139, 122, 86, 0.5) 35%,
+      rgba(139, 122, 86, 1) 50%,
+      rgba(139, 122, 86, 0.5) 65%,
+      rgba(139, 122, 86, 0.5) 100%
     );
     background-size: 200% auto;
     background-clip: text;
@@ -482,11 +483,11 @@ tailwind.config = {
   .section-label-shiny {
     background: linear-gradient(
       110deg,
-      rgba(201, 169, 110, 0.6) 0%,
-      rgba(201, 169, 110, 0.6) 40%,
-      rgba(255, 240, 200, 1) 50%,
-      rgba(201, 169, 110, 0.6) 60%,
-      rgba(201, 169, 110, 0.6) 100%
+      rgba(139, 122, 86, 0.6) 0%,
+      rgba(139, 122, 86, 0.6) 40%,
+      rgba(139, 122, 86, 1) 50%,
+      rgba(139, 122, 86, 0.6) 60%,
+      rgba(139, 122, 86, 0.6) 100%
     );
     background-size: 200% auto;
     background-clip: text;
@@ -510,7 +511,7 @@ tailwind.config = {
     display: inline-block;
     width: 0.05em;
     height: 0.85em;
-    background: #c9a96e;
+    background: #8b7a56;
     margin-left: 0.05em;
     vertical-align: text-bottom;
     border-radius: 1px;
@@ -521,7 +522,7 @@ tailwind.config = {
     51%, 100% { opacity: 0; }
   }
   /* Hero headline still uses gold em color via inline class */
-  .typing-em { color: #c9a96e; }
+  .typing-em { color: #8b7a56; }
 
   /* Hero headline: invisible placeholder reserves layout space so typing never shifts the page */
   .hero-headline { position: relative; }
@@ -546,12 +547,12 @@ tailwind.config = {
     font-size: clamp(3rem, 6.5vw, 5.4rem);
     line-height: 1.04;
     letter-spacing: -0.015em;
-    color: #e8e6df;
+    color: #1c1b1a;
     font-weight: 300;
     margin-bottom: 0;
   }
   .hero-headline-em {
-    color: #c9a96e;
+    color: #8b7a56;
     font-style: italic;
   }
   .hero-clear { clear: both; }
@@ -578,7 +579,7 @@ tailwind.config = {
     background: linear-gradient(135deg,
       rgba(255, 255, 255, 0.04) 0%,
       rgba(255, 255, 255, 0.015) 50%,
-      rgba(201, 169, 110, 0.025) 100%);
+      rgba(139, 122, 86, 0.025) 100%);
     backdrop-filter: blur(14px) saturate(140%);
     -webkit-backdrop-filter: blur(14px) saturate(140%);
     border: 0.5px solid rgba(255, 255, 255, 0.08);
@@ -599,7 +600,7 @@ tailwind.config = {
     background: linear-gradient(90deg,
       transparent 0%,
       rgba(255, 255, 255, 0.18) 30%,
-      rgba(201, 169, 110, 0.35) 70%,
+      rgba(139, 122, 86, 0.35) 70%,
       transparent 100%);
     pointer-events: none;
     z-index: 1;
@@ -608,25 +609,25 @@ tailwind.config = {
   /* --- 1. Currently box: gold-tinted frosted tile --- */
   .currently-box.glass-currently {
     background: linear-gradient(135deg,
-      rgba(201, 169, 110, 0.06) 0%,
+      rgba(139, 122, 86, 0.06) 0%,
       rgba(255, 255, 255, 0.02) 60%,
-      rgba(201, 169, 110, 0.04) 100%);
+      rgba(139, 122, 86, 0.04) 100%);
     backdrop-filter: blur(18px) saturate(160%);
     -webkit-backdrop-filter: blur(18px) saturate(160%);
-    border: 0.5px solid rgba(201, 169, 110, 0.32);
+    border: 0.5px solid rgba(139, 122, 86, 0.32);
     box-shadow:
       0 1px 0 rgba(255, 255, 255, 0.08) inset,
-      0 0 80px rgba(201, 169, 110, 0.04) inset,
+      0 0 80px rgba(139, 122, 86, 0.04) inset,
       0 12px 48px rgba(0, 0, 0, 0.45),
-      0 0 0 1px rgba(201, 169, 110, 0.08);
+      0 0 0 1px rgba(139, 122, 86, 0.08);
     overflow: hidden;
   }
   .currently-box.glass-currently::before {
     background: linear-gradient(90deg,
       transparent,
-      rgba(201, 169, 110, 0.55),
+      rgba(139, 122, 86, 0.55),
       rgba(255, 255, 255, 0.2),
-      rgba(201, 169, 110, 0.35),
+      rgba(139, 122, 86, 0.35),
       transparent);
   }
   /* A slow drifting refraction sweep across the currently-box */
@@ -637,8 +638,8 @@ tailwind.config = {
     width: 200%;
     height: 200%;
     background: radial-gradient(ellipse 60% 40% at 50% 50%,
-                rgba(201, 169, 110, 0.07) 0%,
-                rgba(201, 169, 110, 0) 60%);
+                rgba(139, 122, 86, 0.07) 0%,
+                rgba(139, 122, 86, 0) 60%);
     pointer-events: none;
     animation: glass-drift 18s linear infinite;
     z-index: 0;
@@ -655,10 +656,10 @@ tailwind.config = {
     background: linear-gradient(140deg,
       rgba(255, 255, 255, 0.025) 0%,
       rgba(20, 20, 18, 0.4) 50%,
-      rgba(201, 169, 110, 0.04) 100%) !important;
+      rgba(139, 122, 86, 0.04) 100%) !important;
     backdrop-filter: blur(12px) saturate(140%);
     -webkit-backdrop-filter: blur(12px) saturate(140%);
-    border: 0.5px solid rgba(201, 169, 110, 0.18) !important;
+    border: 0.5px solid rgba(139, 122, 86, 0.18) !important;
     box-shadow:
       0 1px 0 rgba(255, 255, 255, 0.08) inset,
       0 -1px 0 rgba(0, 0, 0, 0.3) inset,
@@ -673,9 +674,9 @@ tailwind.config = {
     height: 1px;
     background: linear-gradient(90deg,
       transparent,
-      rgba(201, 169, 110, 0.5),
+      rgba(139, 122, 86, 0.5),
       rgba(255, 255, 255, 0.2),
-      rgba(201, 169, 110, 0.4),
+      rgba(139, 122, 86, 0.4),
       transparent);
     pointer-events: none;
     z-index: 1;
@@ -697,12 +698,12 @@ tailwind.config = {
   }
   .tag.glass-tag:hover {
     background: linear-gradient(135deg,
-      rgba(201, 169, 110, 0.12) 0%,
-      rgba(201, 169, 110, 0.04) 100%);
-    border-color: rgba(201, 169, 110, 0.4);
+      rgba(139, 122, 86, 0.12) 0%,
+      rgba(139, 122, 86, 0.04) 100%);
+    border-color: rgba(139, 122, 86, 0.4);
     box-shadow:
       0 1px 0 rgba(255, 255, 255, 0.14) inset,
-      0 0 16px rgba(201, 169, 110, 0.18),
+      0 0 16px rgba(139, 122, 86, 0.18),
       0 1px 4px rgba(0, 0, 0, 0.3);
     transform: translateY(-1px);
   }
@@ -714,10 +715,10 @@ tailwind.config = {
       rgba(36, 32, 24, 0.45) 100%) !important;
     backdrop-filter: blur(16px) saturate(160%);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
-    border: 0.5px solid rgba(201, 169, 110, 0.25) !important;
+    border: 0.5px solid rgba(139, 122, 86, 0.25) !important;
     box-shadow:
       0 1px 0 rgba(255, 255, 255, 0.08) inset,
-      0 0 20px rgba(201, 169, 110, 0.06) inset,
+      0 0 20px rgba(139, 122, 86, 0.06) inset,
       0 4px 16px rgba(0, 0, 0, 0.3);
     position: relative;
     overflow: hidden;
@@ -728,7 +729,7 @@ tailwind.config = {
     top: 0; left: 0; right: 0;
     height: 1px;
     background: linear-gradient(90deg,
-      transparent, rgba(201, 169, 110, 0.5), transparent);
+      transparent, rgba(139, 122, 86, 0.5), transparent);
     pointer-events: none;
   }
 
@@ -767,12 +768,12 @@ tailwind.config = {
     background: rgba(20, 20, 18, 0.78);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 0.5px solid rgba(201, 169, 110, 0.18);
+    border: 0.5px solid rgba(139, 122, 86, 0.18);
     padding: 8px 14px;
     border-radius: 2px;
   }
   .chapter-mark-num {
-    color: #c9a96e;
+    color: #8b7a56;
     font-weight: 500;
   }
   .chapter-mark-sep {
@@ -801,7 +802,7 @@ tailwind.config = {
     top: 0;
     height: 100%;
     width: 0%;
-    background: linear-gradient(to right, transparent, #c9a96e);
+    background: linear-gradient(to right, transparent, #8b7a56);
     transition: width 0.18s linear;
   }
   @media (max-width: 720px) { .chapter-mark { display: none; } }
@@ -825,9 +826,9 @@ tailwind.config = {
     top: 0; left: 0;
     width: 5px; height: 5px;
     border-radius: 50%;
-    background: #c9a96e;
+    background: #8b7a56;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 6px rgba(201, 169, 110, 0.6);
+    box-shadow: 0 0 6px rgba(139, 122, 86, 0.6);
     transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
   }
   .glyph-cursor.has-glyph .glyph-cursor-dot {
@@ -839,7 +840,7 @@ tailwind.config = {
     transform: translate(-50%, -50%) scale(0.6);
     font-family: 'DM Mono', monospace;
     font-size: 22px;
-    color: #c9a96e;
+    color: #8b7a56;
     line-height: 1;
     width: 36px;
     height: 36px;
@@ -850,10 +851,10 @@ tailwind.config = {
     background: rgba(12, 12, 11, 0.7);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    border: 0.5px solid rgba(201, 169, 110, 0.35);
+    border: 0.5px solid rgba(139, 122, 86, 0.35);
     opacity: 0;
     transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    text-shadow: 0 0 8px rgba(201, 169, 110, 0.5);
+    text-shadow: 0 0 8px rgba(139, 122, 86, 0.5);
   }
   .glyph-cursor.has-glyph .glyph-cursor-glyph {
     opacity: 1;
@@ -867,7 +868,7 @@ tailwind.config = {
     font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 0.25em;
-    color: #c9a96e;
+    color: #8b7a56;
     white-space: nowrap;
     opacity: 0;
     transform: translateX(-4px);
@@ -891,7 +892,7 @@ tailwind.config = {
     pointer-events: none;
     z-index: 100;
     filter: url(#blob-goo);
-    mix-blend-mode: screen;
+    mix-blend-mode: multiply;
     opacity: 0;
     transition: opacity 0.5s ease;
   }
@@ -903,7 +904,7 @@ tailwind.config = {
     border-radius: 50%;
     will-change: transform;
     pointer-events: none;
-    background: #c9a96e;
+    background: #8b7a56;
     box-shadow: 4px 4px 3px rgba(0,0,0,0.4);
   }
   .blob-1 {
@@ -924,7 +925,7 @@ tailwind.config = {
   .blob-inner {
     position: absolute;
     border-radius: 50%;
-    background: rgba(255, 240, 200, 0.7);
+    background: rgba(139, 122, 86, 0.7);
     pointer-events: none;
   }
   .blob-1 .blob-inner {
@@ -990,27 +991,27 @@ tailwind.config = {
   /* ===== PROJECT CARD UPGRADES ===== */
   .project-card {
     padding: 2.5rem 0;
-    border-bottom: 0.5px solid rgba(255,255,255,0.07);
+    border-bottom: 0.5px solid rgba(0,0,0,0.08);
     transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
   }
   .project-card:hover {
-    background: rgba(255,255,255,0.02);
+    background: rgba(0,0,0,0.02);
     transform: translateY(-2px);
   }
 
   /* Featured project card (Game Algorithms) */
   .project-featured {
     padding: 2rem 2.5rem !important;
-    border: 0.5px solid rgba(201,169,110,0.15) !important;
-    border-bottom: 0.5px solid rgba(201,169,110,0.15) !important;
+    border: 0.5px solid rgba(139,122,86,0.15) !important;
+    border-bottom: 0.5px solid rgba(139,122,86,0.15) !important;
     border-radius: 4px;
     transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
   .project-featured:hover {
-    background: rgba(201,169,110,0.04);
-    border-color: rgba(201,169,110,0.3) !important;
-    box-shadow: 0 4px 30px rgba(201,169,110,0.06);
+    background: rgba(139,122,86,0.04);
+    border-color: rgba(139,122,86,0.3) !important;
+    box-shadow: 0 4px 30px rgba(139,122,86,0.06);
     transform: translateY(-3px);
   }
   .featured-badge {
@@ -1018,10 +1019,10 @@ tailwind.config = {
     font-size: 8px;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: #c9a96e;
-    background: rgba(201,169,110,0.1);
+    color: #8b7a56;
+    background: rgba(139,122,86,0.1);
     padding: 3px 8px;
-    border: 0.5px solid rgba(201,169,110,0.2);
+    border: 0.5px solid rgba(139,122,86,0.2);
     display: inline-block;
     margin-bottom: 1rem;
   }
@@ -1038,7 +1039,7 @@ tailwind.config = {
     left: 0;
     width: 0;
     height: 1px;
-    background: #c9a96e;
+    background: #8b7a56;
     transition: width 0.3s ease;
   }
   .link-anim:hover::after { width: 100%; }
@@ -1048,8 +1049,8 @@ tailwind.config = {
     transition: border-color 0.3s ease, color 0.3s ease;
   }
   .tag:hover {
-    border-color: rgba(201,169,110,0.3);
-    color: #c9a96e;
+    border-color: rgba(139,122,86,0.3);
+    color: #8b7a56;
   }
 
   /* ===== CURRENTLY: THOUGHT ROTATION ===== */
@@ -1068,12 +1069,12 @@ tailwind.config = {
     font-weight: 400;
     font-size: clamp(1.15rem, 1.6vw, 1.4rem);
     line-height: 1.55;
-    color: #f0ede4;
+    color: #2a2826;
     letter-spacing: -0.005em;
   }
   .thought-item.thought-active { opacity: 1; position: relative; }
   .thought-mark {
-    color: #c9a96e;
+    color: #8b7a56;
     font-size: 1.3em;
     line-height: 0;
     position: relative;
@@ -1289,7 +1290,7 @@ tailwind.config = {
       top: 0;
       height: 100vh;
       overflow: hidden;
-      background: #0c0c0b;
+      background: #f0ece6;
     }
     /* Section label hangs in the upper margin */
     .jr-label {
@@ -1321,7 +1322,7 @@ tailwind.config = {
     .jr-hint .arrow {
       display: inline-block;
       margin-left: 0.5em;
-      color: #c9a96e;
+      color: #8b7a56;
       animation: jrHintPulse 2.4s ease-in-out infinite;
     }
     @keyframes jrHintPulse {
@@ -1354,8 +1355,8 @@ tailwind.config = {
       background: linear-gradient(
         to right,
         transparent 0%,
-        rgba(255,255,255,0.07) 6%,
-        rgba(255,255,255,0.07) 94%,
+        rgba(0,0,0,0.08) 6%,
+        rgba(0,0,0,0.08) 94%,
         transparent 100%
       );
       transform: translateY(-0.5px);
@@ -1370,12 +1371,12 @@ tailwind.config = {
       background: linear-gradient(
         to right,
         transparent 0%,
-        #c9a96e 8%,
-        #c9a96e 92%,
+        #8b7a56 8%,
+        #8b7a56 92%,
         transparent 100%
       );
       transform: translateY(-0.5px);
-      box-shadow: 0 0 8px rgba(201, 169, 110, 0.4);
+      box-shadow: 0 0 8px rgba(139, 122, 86, 0.4);
       transition: width 0.1s linear;
       pointer-events: none;
     }
@@ -1389,9 +1390,9 @@ tailwind.config = {
     }
     .jr-bg-far {
       background-image:
-        radial-gradient(circle at 15% 30%, rgba(201,169,110,0.04) 0%, transparent 25%),
-        radial-gradient(circle at 70% 70%, rgba(201,169,110,0.025) 0%, transparent 30%),
-        radial-gradient(circle at 90% 20%, rgba(201,169,110,0.03) 0%, transparent 22%);
+        radial-gradient(circle at 15% 30%, rgba(139,122,86,0.04) 0%, transparent 25%),
+        radial-gradient(circle at 70% 70%, rgba(139,122,86,0.025) 0%, transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(139,122,86,0.03) 0%, transparent 22%);
       background-size: 200% 100%;
     }
     .jr-bg-mid {
@@ -1406,8 +1407,8 @@ tailwind.config = {
           90deg,
           transparent 0,
           transparent 119px,
-          rgba(255,255,255,0.025) 120px,
-          rgba(255,255,255,0.025) 121px
+          rgba(0,0,0,0.03) 120px,
+          rgba(0,0,0,0.03) 121px
         );
       mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
       -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
@@ -1440,15 +1441,15 @@ tailwind.config = {
       z-index: 3;
     }
     .jr-item.jr-active .jr-node {
-      background: #c9a96e;
+      background: #8b7a56;
       box-shadow:
-        0 0 0 4px rgba(201,169,110,0.15),
-        0 0 18px rgba(201,169,110,0.6),
-        0 0 36px rgba(201,169,110,0.3);
+        0 0 0 4px rgba(139,122,86,0.15),
+        0 0 18px rgba(139,122,86,0.6),
+        0 0 36px rgba(139,122,86,0.3);
       transform: translate(-50%, -50%) scale(1.25);
     }
     .jr-item.jr-visited .jr-node {
-      background: #c9a96e;
+      background: #8b7a56;
       opacity: 0.55;
     }
 
@@ -1459,7 +1460,7 @@ tailwind.config = {
       left: 50%;
       width: 0.5px;
       height: 0;
-      background: linear-gradient(to var(--tether-dir, bottom), rgba(201,169,110,0.3), transparent);
+      background: linear-gradient(to var(--tether-dir, bottom), rgba(139,122,86,0.3), transparent);
       transform-origin: top center;
       transition: height 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) 0.05s;
       pointer-events: none;
@@ -1486,7 +1487,7 @@ tailwind.config = {
     .jr-item:nth-child(even) .jr-tether {
       top: auto;
       bottom: 50%;
-      background: linear-gradient(to top, rgba(201,169,110,0.3), transparent);
+      background: linear-gradient(to top, rgba(139,122,86,0.3), transparent);
     }
     .jr-item.jr-active .jr-card {
       opacity: 1;
@@ -1503,7 +1504,7 @@ tailwind.config = {
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.3em;
-      color: #c9a96e;
+      color: #8b7a56;
       margin-bottom: 0.6rem;
     }
     .jr-title {
@@ -1512,7 +1513,7 @@ tailwind.config = {
       font-weight: 400;
       font-size: clamp(1.4rem, 2vw, 1.8rem);
       line-height: 1.2;
-      color: #e8e6df;
+      color: #1c1b1a;
       margin-bottom: 0.5rem;
       letter-spacing: -0.005em;
     }
@@ -1540,7 +1541,7 @@ tailwind.config = {
       line-height: 1.8;
     }
     .jr-counter-num {
-      color: #c9a96e;
+      color: #8b7a56;
       font-size: 18px;
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
@@ -1684,7 +1685,7 @@ tailwind.config = {
 
       <!-- Down arrow at bottom -->
       <div style="position: absolute; bottom: 2rem; left: 0; right: 0; text-align: center; z-index: 5; pointer-events: none;">
-        <span style="font-size: 1.5rem; color: #c9a96e; animation: jrHintPulse 2.4s ease-in-out infinite; display: inline-block;">&darr;</span>
+        <span style="font-size: 1.5rem; color: #8b7a56; animation: jrHintPulse 2.4s ease-in-out infinite; display: inline-block;">&darr;</span>
       </div>
 
     </div>
@@ -1862,7 +1863,7 @@ tailwind.config = {
             An Android app bridging the digital literacy gap for India&rsquo;s 140 million seniors who own smartphones but lack the confidence to use them. Unlike tools that merely instruct, Sage operates the phone on the user&rsquo;s behalf &mdash; leveraging Android&rsquo;s Accessibility Service API to execute tasks like sending WhatsApp messages and adjusting settings via voice commands, requiring only a single confirmation tap. Combines autonomous screen control, a daily digest of tips and scam alerts, and a bilingual conversational assistant powered by Claude.
           </p>
           <div class="mt-4">
-            <span class="font-mono text-[9px] uppercase tracking-[0.15em] text-text-dim" style="border: 0.5px solid rgba(255,255,255,0.1); padding: 3px 8px;">In Development</span>
+            <span class="font-mono text-[9px] uppercase tracking-[0.15em] text-text-dim" style="border: 0.5px solid rgba(0,0,0,0.1); padding: 3px 8px;">In Development</span>
           </div>
         </div>
 
@@ -2375,7 +2376,7 @@ tailwind.config = {
     navLinks.forEach(function(link) {
       link.style.color = '';
       if (link.getAttribute('href') === '#' + current) {
-        link.style.color = '#c9a96e';
+        link.style.color = '#8b7a56';
       }
     });
   }
@@ -2855,9 +2856,9 @@ tailwind.config = {
         const a = m.alpha * (0.5 + flicker * 0.5);
 
         const grad = hctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, m.r * 4);
-        grad.addColorStop(0,   'rgba(255, 220, 150, ' + a + ')');
-        grad.addColorStop(0.5, 'rgba(201, 169, 110, ' + (a * 0.4) + ')');
-        grad.addColorStop(1,   'rgba(201, 169, 110, 0)');
+        grad.addColorStop(0,   'rgba(139, 122, 86, ' + a + ')');
+        grad.addColorStop(0.5, 'rgba(139, 122, 86, ' + (a * 0.4) + ')');
+        grad.addColorStop(1,   'rgba(139, 122, 86, 0)');
         hctx.fillStyle = grad;
         hctx.beginPath();
         hctx.arc(m.x, m.y, m.r * 4, 0, Math.PI * 2);
