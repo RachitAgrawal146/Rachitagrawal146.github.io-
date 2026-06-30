@@ -4,14 +4,38 @@
 <meta charset="utf-8" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Rachit Agrawal</title>
+<title>Rachit Agrawal — CS Researcher, Theatre Actor</title>
 <meta name="description" content="I build systems, perform on stage, and try to make the complex feel human. CS researcher, theatre actor, builder." />
-<meta property="og:title" content="Rachit Agrawal" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://rachitagrawal146.github.io/" />
+<meta property="og:title" content="Rachit Agrawal — CS Researcher, Theatre Actor" />
 <meta property="og:description" content="I build systems, perform on stage, and try to make the complex feel human. From Ranchi, shaped by silence, working on things that matter." />
 <meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Rachit Agrawal" />
+<meta property="og:url" content="https://rachitagrawal146.github.io/" />
+<meta property="og:image" content="https://rachitagrawal146.github.io/images/portrait-bw.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Rachit Agrawal — CS Researcher, Theatre Actor" />
 <meta name="twitter:description" content="CS researcher, theatre actor, builder. Shaped by silence, working on things that matter." />
+<meta name="twitter:image" content="https://rachitagrawal146.github.io/images/portrait-bw.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Rachit Agrawal",
+  "url": "https://rachitagrawal146.github.io/",
+  "image": "https://rachitagrawal146.github.io/images/portrait-bw.png",
+  "jobTitle": "CS Researcher & Theatre Actor",
+  "description": "CS researcher, theatre actor, builder. From Ranchi, shaped by silence, working on things that matter.",
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "Sahyadri School (KFI), Pune"
+  },
+  "sameAs": [
+    "https://github.com/RachitAgrawal146",
+    "https://open.substack.com/pub/rachit1548"
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -56,6 +80,40 @@ tailwind.config = {
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Visually hidden but available to screen readers */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Skip-to-content link (visible on keyboard focus) */
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -3rem;
+    z-index: 10000;
+    background: #1c1b1a;
+    color: #f0ece6;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    padding: 0.6rem 1rem;
+    border-radius: 2px;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus {
+    top: 1rem;
+    outline: 2px solid #8b7a56;
+    outline-offset: 2px;
   }
 
   /* Noise texture overlay */
@@ -1106,6 +1164,7 @@ tailwind.config = {
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to content</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <!-- Hidden SVG filter for gooey blob cursor -->
 <svg class="blob-svg-filter" xmlns="http://www.w3.org/2000/svg">
@@ -1133,9 +1192,10 @@ tailwind.config = {
 </div>
 
 <!-- Navigation -->
-<nav class="nav-bar" id="navbar">
+<header>
+<nav class="nav-bar" id="navbar" aria-label="Main navigation">
   <div class="max-w-content mx-auto px-6 py-5 flex justify-between items-center">
-    <a href="#" class="nav-name font-display italic text-xl text-text-primary tracking-tight">Rachit Agrawal</a>
+    <a href="#home" class="nav-name font-display italic text-xl text-text-primary tracking-tight" aria-label="Rachit Agrawal — Home">Rachit Agrawal</a>
     <div class="desktop-nav flex items-center gap-10">
       <a href="#research" class="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted hover:text-gold transition-colors duration-300">Research</a>
       <a href="#projects" class="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted hover:text-gold transition-colors duration-300">Projects</a>
@@ -1145,9 +1205,10 @@ tailwind.config = {
     </div>
   </div>
 </nav>
+</header>
 
 <!-- Mobile bottom nav -->
-<div class="mobile-nav" id="mobilenav">
+<div class="mobile-nav" id="mobilenav" role="navigation" aria-label="Mobile navigation">
   <a href="#research">Research</a>
   <a href="#projects">Projects</a>
   <a href="#theatre">Theatre</a>
@@ -1165,13 +1226,13 @@ tailwind.config = {
   <div class="chapter-mark-bar"><div class="chapter-mark-bar-fill" id="chapterBarFill"></div></div>
 </div>
 
-<main class="max-w-content mx-auto px-6">
+<main class="max-w-content mx-auto px-6" id="main-content">
 
   <!-- =============================== -->
   <!-- HERO -->
   <!-- =============================== -->
-  <section class="min-h-screen flex flex-col justify-center pt-24 pb-16 relative hero-section-wide">
-    <div class="hero-particles"><canvas id="heroParticleCanvas"></canvas></div>
+  <section class="min-h-screen flex flex-col justify-center pt-24 pb-16 relative hero-section-wide" id="home" aria-label="Introduction">
+    <div class="hero-particles" aria-hidden="true"><canvas id="heroParticleCanvas"></canvas></div>
     <div class="reveal">
 
       <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-gold mb-8 hero-load shiny-text">Ranchi &rarr; Sahyadri &rarr; The World</p>
@@ -1218,7 +1279,7 @@ tailwind.config = {
   <!-- =============================== -->
   <!-- 01 — ABOUT -->
   <!-- =============================== -->
-  <section class="py-24 md:py-32" id="about">
+  <section class="py-24 md:py-32" id="about" aria-label="About">
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">01 &mdash; About</span></div>
 
@@ -1257,7 +1318,7 @@ tailwind.config = {
 
   <!-- Krishnamurti quote -->
   <hr class="section-divider" />
-  <aside class="py-16 md:py-20 reveal">
+  <aside class="py-16 md:py-20 reveal" aria-label="Quote from Jiddu Krishnamurti">
     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8 max-w-content mx-auto px-6">
       <div class="shrink-0">
         <div class="w-20 h-20 rounded-full overflow-hidden border border-gold/30">
@@ -1578,7 +1639,7 @@ tailwind.config = {
     }
   </style>
 
-  <section class="jr-section" id="journey">
+  <section class="jr-section" id="journey" aria-label="The Journey">
     <div class="jr-sticky">
 
       <!-- Parallax background depth layers -->
@@ -1791,7 +1852,7 @@ tailwind.config = {
   <!-- =============================== -->
   <!-- 03 — WHY GAME ALGORITHMS? -->
   <!-- =============================== -->
-  <section class="py-24 md:py-32" id="research">
+  <section class="py-24 md:py-32" id="research" aria-label="Research">
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">03 &mdash; Why Game Algorithms?</span></div>
 
@@ -1818,7 +1879,7 @@ tailwind.config = {
   <!-- =============================== -->
   <!-- 04 — PROJECTS -->
   <!-- =============================== -->
-  <section class="py-24 md:py-32" id="projects">
+  <section class="py-24 md:py-32" id="projects" aria-label="Projects">
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">04 &mdash; Projects</span></div>
 
@@ -1843,7 +1904,7 @@ tailwind.config = {
           The most interesting finding: an algorithm&rsquo;s real-world efficiency depends not on theoretical complexity alone, but on the ratio between the cost of its optimisation strategy and the savings that strategy produces.
         </p>
         <div class="flex flex-wrap gap-4">
-          <a href="projects.html" class="font-mono text-[10px] uppercase tracking-[0.2em] text-gold hover:text-text-primary transition-colors duration-300 link-anim">Read Full Project Details &rarr;</a>
+          <a href="projects.html" aria-label="Read full project details for the Game Algorithms Engine" class="font-mono text-[10px] uppercase tracking-[0.2em] text-gold hover:text-text-primary transition-colors duration-300 link-anim">Read Full Project Details &rarr;</a>
           <a href="https://github.com/RachitAgrawal146/game-algorithms-java" target="_blank" rel="noopener noreferrer" class="font-mono text-[10px] uppercase tracking-[0.2em] text-gold hover:text-text-primary transition-colors duration-300 link-anim">Source Code &nearr;</a>
           <a href="https://rachitagrawal146.github.io/game-algorithms-java/" target="_blank" rel="noopener noreferrer" class="font-mono text-[10px] uppercase tracking-[0.2em] text-gold hover:text-text-primary transition-colors duration-300 link-anim">Interactive Demos &rarr;</a>
         </div>
@@ -1878,7 +1939,7 @@ tailwind.config = {
             An AI-assisted mobile app for civilians in active conflict zones, integrating real-time safe-route navigation, survivor proximity mapping, government and humanitarian broadcast aggregation, and psychological wellbeing support into a single offline-capable platform. Built around three stages of crisis response &mdash; immediate physical safety, coordinated evacuation, and long-term emotional recovery. Won 1st place at Sahyadri School&rsquo;s Hilltop Entrepreneur competition.
           </p>
           <div class="mt-4">
-            <a href="lifeline_app.html" target="_blank" class="font-mono text-[10px] uppercase tracking-[0.2em] text-gold hover:text-text-primary transition-colors duration-300 link-anim">Try Prototype &rarr;</a>
+            <a href="lifeline_app.html" target="_blank" rel="noopener noreferrer" class="font-mono text-[10px] uppercase tracking-[0.2em] text-gold hover:text-text-primary transition-colors duration-300 link-anim">Try Prototype &rarr;</a>
           </div>
         </div>
       </div>
@@ -1890,7 +1951,7 @@ tailwind.config = {
   <!-- =============================== -->
   <!-- 05 — HOW I APPROACH PROBLEMS -->
   <!-- =============================== -->
-  <section class="py-24 md:py-32" id="approach">
+  <section class="py-24 md:py-32" id="approach" aria-label="How I Approach Problems">
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">05 &mdash; How I Approach Problems</span></div>
       <div class="space-y-10">
@@ -1933,7 +1994,7 @@ tailwind.config = {
   <!-- =============================== -->
   <!-- 07 — ACHIEVEMENTS -->
   <!-- =============================== -->
-  <section class="py-24 md:py-32" id="achievements">
+  <section class="py-24 md:py-32" id="achievements" aria-label="Achievements">
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">06 &mdash; Academics &amp; Recognition</span></div>
       <div class="space-y-10">
@@ -1974,7 +2035,7 @@ tailwind.config = {
           <p class="font-mono text-[9px] uppercase tracking-[0.25em] text-gold mb-3">UNESCO ESD Certification</p>
           <p class="text-text-muted text-sm">
             Sustainable construction training at Hunnarshala Foundation, Bhuj.
-            <a href="images/ESD.jpg" target="_blank" class="link-anim text-gold ml-1">View certificate &rarr;</a>
+            <a href="images/ESD.jpg" target="_blank" rel="noopener noreferrer" class="link-anim text-gold ml-1">View certificate &rarr;</a>
           </p>
         </div>
 
@@ -1987,7 +2048,7 @@ tailwind.config = {
   <!-- =============================== -->
   <!-- 04 — THEATRE -->
   <!-- =============================== -->
-  <section class="py-24 md:py-32" id="theatre">
+  <section class="py-24 md:py-32" id="theatre" aria-label="Theatre">
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">07 &mdash; Theatre</span></div>
 
@@ -2003,12 +2064,13 @@ tailwind.config = {
 
       <!-- Productions table -->
       <table class="theatre-table">
+        <caption class="sr-only">Theatre performances</caption>
         <thead>
           <tr>
-            <th>Play</th>
-            <th>Role</th>
-            <th>Genre</th>
-            <th class="text-right">Watch</th>
+            <th scope="col">Play</th>
+            <th scope="col">Role</th>
+            <th scope="col">Genre</th>
+            <th scope="col" class="text-right">Watch</th>
           </tr>
         </thead>
         <tbody>
@@ -2024,13 +2086,13 @@ tailwind.config = {
             <td class="font-display text-lg text-text-primary" style="font-weight: 400;">Anyaay</td>
             <td class="text-sm text-text-muted">Lead: The Farmer</td>
             <td class="text-sm text-text-muted">Tragic Hindi</td>
-            <td class="text-right"><span class="text-text-dim text-sm">&mdash;</span></td>
+            <td class="text-right"><span class="text-text-dim text-sm" aria-label="Recording not available">&mdash;</span></td>
           </tr>
           <tr>
             <td class="font-display text-lg text-text-primary" style="font-weight: 400;">Rehearsal</td>
             <td class="text-sm text-text-muted">Bhojpuri Farmer</td>
             <td class="text-sm text-text-muted">Comedy Hindi</td>
-            <td class="text-right"><span class="text-text-dim text-sm">&mdash;</span></td>
+            <td class="text-right"><span class="text-text-dim text-sm" aria-label="Recording not available">&mdash;</span></td>
           </tr>
           <tr>
             <td class="font-display text-lg text-text-primary" style="font-weight: 400;">Twelve Angry Jurors</td>
@@ -2077,7 +2139,7 @@ tailwind.config = {
   <!-- =============================== -->
   <!-- LEADERSHIP — woven between theatre and beyond -->
   <!-- =============================== -->
-  <section class="py-24 md:py-32">
+  <section class="py-24 md:py-32" id="school" aria-label="School Life">
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">08 &mdash; School Life</span></div>
 
@@ -2123,7 +2185,7 @@ tailwind.config = {
   <!-- =============================== -->
   <!-- 05 — BEYOND -->
   <!-- =============================== -->
-  <section class="py-24 md:py-32" id="beyond">
+  <section class="py-24 md:py-32" id="beyond" aria-label="Beyond">
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">09 &mdash; Beyond the Screen</span></div>
 
@@ -2198,19 +2260,19 @@ tailwind.config = {
             <div class="photo-slot ratio-4-3">
               <img src="images/16000ft.jpg" alt="Bali Pass trek at 16,000 ft" loading="lazy" style="object-position: left center;" />
             </div>
-            <p class="font-mono text-[9px] text-text-dim mt-2">16,000 ft &middot; <a href="images/Bali_Pass.jpg" target="_blank" class="link-anim text-gold">Certificate</a></p>
+            <p class="font-mono text-[9px] text-text-dim mt-2">16,000 ft &middot; <a href="images/Bali_Pass.jpg" target="_blank" rel="noopener noreferrer" class="link-anim text-gold">Certificate</a></p>
           </div>
           <div>
             <div class="photo-slot ratio-4-3">
               <img src="images/pandav-patthar.jpg" alt="Pandav Patthar — 12,500 ft" loading="lazy" />
             </div>
-            <p class="font-mono text-[9px] text-text-dim mt-2">12,500 ft &middot; <a href="images/Pandav_Patthar.jpg" target="_blank" class="link-anim text-gold">Certificate</a></p>
+            <p class="font-mono text-[9px] text-text-dim mt-2">12,500 ft &middot; <a href="images/Pandav_Patthar.jpg" target="_blank" rel="noopener noreferrer" class="link-anim text-gold">Certificate</a></p>
           </div>
           <div>
             <div class="photo-slot ratio-4-3">
               <img src="images/1829145170-IMG-20230427-WA0011~2.jpg" alt="Inme Tons trek, Uttarakhand" loading="lazy" />
             </div>
-            <p class="font-mono text-[9px] text-text-dim mt-2">Uttarakhand &middot; <a href="images/INME_Tons.jpg" target="_blank" class="link-anim text-gold">Certificate</a></p>
+            <p class="font-mono text-[9px] text-text-dim mt-2">Uttarakhand &middot; <a href="images/INME_Tons.jpg" target="_blank" rel="noopener noreferrer" class="link-anim text-gold">Certificate</a></p>
           </div>
         </div>
       </div>
@@ -2230,7 +2292,7 @@ tailwind.config = {
   <!-- =============================== -->
   <!-- 06 — CURRENTLY -->
   <!-- =============================== -->
-  <section class="py-24 md:py-32" id="currently">
+  <section class="py-24 md:py-32" id="currently" aria-label="Currently">
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">10 &mdash; Currently</span></div>
 
@@ -2258,7 +2320,7 @@ tailwind.config = {
   <!-- =============================== -->
   <!-- 07 — WRITING -->
   <!-- =============================== -->
-  <section class="py-24 md:py-32" id="writing">
+  <section class="py-24 md:py-32" id="writing" aria-label="Writing">
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">11 &mdash; Writing</span></div>
       <div class="writing-piece">
@@ -2278,7 +2340,7 @@ tailwind.config = {
   <!-- =============================== -->
   <!-- 08 — CONTACT -->
   <!-- =============================== -->
-  <section class="py-24 md:py-32" id="contact">
+  <section class="py-24 md:py-32" id="contact" aria-label="Contact">
     <div class="reveal">
       <div class="section-label"><span class="shiny-text">12 &mdash; Contact</span></div>
 
