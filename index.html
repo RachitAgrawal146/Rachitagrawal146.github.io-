@@ -743,16 +743,26 @@ tailwind.config = {
   /* --- 3. Glass pill tags --- */
   .tag.glass-tag {
     background: linear-gradient(135deg,
-      rgba(255, 255, 255, 0.05) 0%,
-      rgba(255, 255, 255, 0.015) 100%);
+      rgba(139, 122, 86, 0.07) 0%,
+      rgba(139, 122, 86, 0.03) 100%);
     backdrop-filter: blur(8px) saturate(140%);
     -webkit-backdrop-filter: blur(8px) saturate(140%);
-    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    border: 0.5px solid rgba(139, 122, 86, 0.3);  /* warm gold border, visible on cream */
     box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.08) inset,
-      0 1px 4px rgba(0, 0, 0, 0.2);
+      0 1px 0 rgba(139, 122, 86, 0.08) inset,
+      0 1px 4px rgba(0, 0, 0, 0.08);
     transition: background 0.4s ease, border-color 0.4s ease,
                 box-shadow 0.4s ease, transform 0.3s ease;
+  }
+  /* Tags inside the dark glass featured card need lighter text/border */
+  .glass-featured .tag,
+  .glass-featured .tag.glass-tag {
+    color: rgba(255, 255, 255, 0.75);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  .glass-featured .tag.glass-tag:hover {
+    color: rgb(255, 220, 150);
+    border-color: rgba(255, 220, 150, 0.5);
   }
   .tag.glass-tag:hover {
     background: linear-gradient(135deg,
@@ -831,14 +841,14 @@ tailwind.config = {
     border-radius: 2px;
   }
   .chapter-mark-num {
-    color: #8b7a56;
+    color: rgb(255, 220, 150);   /* bright warm gold — readable on dark glass */
     font-weight: 500;
   }
   .chapter-mark-sep {
-    color: #5e5b54;
+    color: rgba(255, 255, 255, 0.6);  /* soft white */
   }
   .chapter-mark-title {
-    color: #c4c2bd;
+    color: rgba(255, 255, 255, 0.9);  /* near-white, clearly readable */
     font-weight: 400;
     transition: opacity 0.4s ease, transform 0.4s ease;
   }
@@ -849,8 +859,8 @@ tailwind.config = {
   .chapter-mark-bar {
     width: 100%;
     max-width: 220px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.08);
+    height: 2px;
+    background: rgba(255, 255, 255, 0.12);  /* slightly more visible track */
     position: relative;
     overflow: hidden;
   }
@@ -860,7 +870,7 @@ tailwind.config = {
     top: 0;
     height: 100%;
     width: 0%;
-    background: linear-gradient(to right, transparent, #b39a5e);
+    background: linear-gradient(to right, rgba(179, 154, 94, 0.4), rgb(179, 154, 94));
     transition: width 0.18s linear;
   }
   @media (max-width: 720px) { .chapter-mark { display: none; } }
@@ -1753,6 +1763,9 @@ tailwind.config = {
   </section>
 
   <script>
+  // Prevent the browser restoring a prior scroll position during load, which
+  // left scroll-driven trackers (chapter mark, journey) in a stale state.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   (function() {
     var section = document.getElementById('journey');
     var sticky = section ? section.querySelector('.jr-sticky') : null;
@@ -2565,6 +2578,15 @@ tailwind.config = {
     window.addEventListener('resize', onScroll, { passive: true });
     setTimeout(update, 200);
   })();
+
+  // --- Re-sync all scroll-driven UI once everything is laid out, and again
+  //     on back/forward (bfcache) restores, so trackers reflect real scrollY. ---
+  window.addEventListener('load', function() {
+    window.dispatchEvent(new Event('scroll'));
+  });
+  window.addEventListener('pageshow', function() {
+    window.dispatchEvent(new Event('scroll'));
+  });
 
   // --- Portrait gentle parallax translate ---
   const portraitWrap = document.getElementById('portraitWrap');
